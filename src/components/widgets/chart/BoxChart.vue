@@ -20,7 +20,7 @@
 
 <script>
 import EChart from '@/components/chart/echart';
-import Material from 'vuetify/es5/util/colors';
+// import Material from 'vuetify/es5/util/colors';
 
 export default {
   components: {
@@ -91,7 +91,7 @@ export default {
           if (this.gradient) {
             this.defaultOption.push(['series[0].areaStyle', {
               normal: {
-                color: new window.echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                   {
                     offset: 0,
                     color: this.chartColor[0],

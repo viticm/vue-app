@@ -1,7 +1,7 @@
 
 <template>
   <v-card class="chat-room">
-    <v-toolbar card dense flat class="white chat-room--toolbar" light>
+    <v-toolbar dense flat class="white chat-room--toolbar" light>
       <v-btn icon>
         <v-icon color="text--secondary">keyboard_arrow_left</v-icon>
       </v-btn>
@@ -14,8 +14,8 @@
       <v-toolbar-title> <h4>Chat Channel</h4></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tooltip bottom>
-        <v-btn icon slot="activator">
-          <v-icon color="text--secondary">add</v-icon>
+        <v-btn icon v-slot:activator="{ on  }">
+          <v-icon color="text--secondary" v-on="on">add</v-icon>
         </v-btn>
         <span>Add user</span>
       </v-tooltip>

@@ -12,6 +12,7 @@
     "@mdi/font": "^5.1.45",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "echarts": "^4.7.0",
     "js-cookie": "^2.2.1",
     "material-design-icons-iconfont": "^5.0.1",
     "nprogress": "^0.2.0",

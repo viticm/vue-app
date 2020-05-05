@@ -18,6 +18,7 @@ import i18n from '@/lang'
 import Snackbar from '@/components/snackbar/index'
 import VuetifyDialog from 'vuetify-dialog'
 import 'vuetify-dialog/dist/vuetify-dialog.css'
+import echarts from 'echarts'
 
 Vue.use(Vuetify)
 
@@ -51,5 +52,6 @@ Vue.use(VuetifyDialog, {
 })
 
 Vue.prototype.$message = Snackbar
+Vue.prototype.$echarts = echarts
 
 export default vuetify
