@@ -19,7 +19,7 @@
           v-on="on"
           icon
         >
-          <v-icon>spellcheck</v-icon>
+          <v-icon>mdi-alpha-a-box-outline</v-icon>
         </v-btn>
       </template>
       <v-list dense subheader>

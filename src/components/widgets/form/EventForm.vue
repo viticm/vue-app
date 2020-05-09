@@ -4,7 +4,7 @@
       <v-toolbar-title class="body-2">Add New Event</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="closeDialog">
-        <v-icon>close</v-icon>
+        <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-toolbar>
     <v-card-text>
@@ -32,7 +32,7 @@
                 slot="activator"
                 label="Start Date"
                 v-model="startDate"
-                append-icon="event"
+                append-icon="mdi-event"
                 readonly
               ></v-text-field>
               <v-date-picker v-model="startDate" no-title scrollable>
@@ -59,7 +59,7 @@
                 slot="activator"
                 label="Start Time"
                 v-model="startTime"
-                append-icon="access_time"
+                append-icon="mdi-access-time"
                 readonly
               ></v-text-field>
               <v-time-picker v-model="startTime">
@@ -87,7 +87,7 @@
                 slot="activator"
                 label="End Date"
                 v-model="endDate"
-                append-icon="event"
+                append-icon="mdi-event"
                 readonly
               ></v-text-field>
               <v-date-picker v-model="endDate" no-title scrollable>
@@ -114,7 +114,7 @@
                 slot="activator"
                 label="End Time"
                 v-model="endTime"
-                append-icon="access_time"
+                append-icon="mdi-access-time"
                 readonly
               ></v-text-field>
               <v-time-picker v-model="endTime" >

@@ -4,7 +4,7 @@
       <v-toolbar-title><h4>Project</h4></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>more_vert</v-icon>
+        <v-icon>mdi-more-vert</v-icon>
       </v-btn>
     </v-toolbar>
     <v-divider></v-divider>
@@ -27,10 +27,10 @@
             <td class="text-xs-left"><v-progress-linear :value="props.item.progress" height="5" :color="props.item.color"></v-progress-linear> </td>
             <td class="text-xs-right">
               <v-btn flat icon color="grey">
-                <v-icon>edit</v-icon>
+                <v-icon>mdi-edit</v-icon>
               </v-btn>
               <v-btn flat icon color="grey">
-                <v-icon>delete</v-icon>
+                <v-icon>mdi-delete</v-icon>
               </v-btn>
             </td>
           </template>

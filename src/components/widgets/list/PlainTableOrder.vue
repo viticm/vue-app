@@ -4,7 +4,7 @@
       <v-toolbar-title><h4>Order</h4></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>more_vert</v-icon>
+        <v-icon>mdi-more-vert</v-icon>
       </v-btn>      
     </v-toolbar>
     <v-divider></v-divider>

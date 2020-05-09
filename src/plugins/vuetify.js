@@ -12,8 +12,9 @@ import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 
 import * as directives from 'vuetify/es5/directives'
-import 'roboto-fontface/css/roboto/roboto-fontface.css'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+// import 'roboto-fontface/css/roboto/roboto-fontface.css'
+// import 'material-design-icons/iconfont/material-icons.css'
+import '@mdi/font/css/materialdesignicons.css'
 import i18n from '@/lang'
 import Snackbar from '@/components/snackbar/index'
 import VuetifyDialog from 'vuetify-dialog'
@@ -23,9 +24,6 @@ import echarts from 'echarts'
 Vue.use(Vuetify)
 
 const opts = {
-  icons: {
-    iconfont: 'md',
-  },
   theme: {
     themes: {
       light: {

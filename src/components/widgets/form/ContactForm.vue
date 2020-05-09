@@ -73,7 +73,7 @@
             slot="activator"
             class="my-0"
           >
-            <v-icon>refresh</v-icon>
+            <v-icon>mdi-refresh</v-icon>
           </v-btn>
           <span>Refresh form</span>
         </v-tooltip>

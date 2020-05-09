@@ -4,19 +4,19 @@
     <div class="layout ma-0 row">
       <a class="mr-4">
         <v-icon>
-          fa-4x fa-credit-card
+          fa-4x mdi-credit-card
         </v-icon>
       </a>
 
       <a class="mr-4">
         <v-icon>
-          fa-4x fa-apple
+          fa-4x mdi-apple
         </v-icon>
       </a>
 
       <a class="mr-4">
         <v-icon>
-          fa-4x fa-paypal
+          fa-4x mdi-paypal
         </v-icon>
       </a>
     </div>
@@ -58,7 +58,7 @@
         class="mr-2"
         label="Expire Date"
         :error-messages="errors.collect('Expire Date')"        
-        append-icon="today"
+        append-icon="mdi-today"
         type="date"
         v-model="form.expireDate"
         required

@@ -4,7 +4,7 @@
       <!-- mini statistic start -->
       <v-flex lg3 sm6 xs12>
         <mini-statistic
-          icon="fa fa-facebook"
+          icon="mdi-facebook"
           title="100+"
           sub-title="Likes"
           color="indigo"
@@ -13,7 +13,7 @@
       </v-flex>
       <v-flex lg3 sm6 xs12>
         <mini-statistic
-          icon="fa fa-google"
+          icon="mdi-google"
           title="150+"
           sub-title="Connections"
           color="red"
@@ -22,7 +22,7 @@
       </v-flex>
       <v-flex lg3 sm6 xs12>
         <mini-statistic
-          icon="fa fa-twitter"
+          icon="mdi-twitter"
           title="200+"
           sub-title="Followers"
           color="light-blue"
@@ -31,7 +31,7 @@
       </v-flex>
       <v-flex lg3 sm6 xs12>
         <mini-statistic
-          icon="fa fa-instagram"
+          icon="mdi-instagram"
           title="50+"
           sub-title="Shots"
           color="purple"
@@ -42,7 +42,7 @@
       <v-flex lg8 sm12 xs12>
         <v-widget title="Site Traffic" content-bg="white">
           <v-btn icon slot="widget-header-action">
-            <v-icon class="text--secondary">refresh</v-icon>
+            <v-icon class="text--secondary">mdi-refresh</v-icon>
           </v-btn>
           <div slot="widget-content">
             <e-chart
@@ -123,7 +123,7 @@
         <linear-statistic
           title="Sales"
           sub-title="Sales increase"
-          icon="trending_up"
+          icon="mdi-trending-up"
           color="success"
           :value="15"
         >
@@ -131,7 +131,7 @@
         <linear-statistic class="my-4"
                           title="Orders"
                           sub-title="Increase"
-                          icon="trending_up"
+                          icon="mdi-trending-up"
                           color="pink"
                           :value="30"
         >
@@ -139,7 +139,7 @@
         <linear-statistic class="my-4"
                           title="Revenue"
                           sub-title="Revenue increase"
-                          icon="trending_up"
+                          icon="mdi-trending-up"
                           color="primary"
                           :value="50"
         >
@@ -147,7 +147,7 @@
         <linear-statistic class="mt-4"
                           title="Cost"
                           sub-title="Cost reduce"
-                          icon="trending_down"
+                          icon="mdi-trending-down"
                           color="orange"
                           :value="25"
         >
@@ -198,22 +198,22 @@
 
 <script>
   console.log('The dashboard===========================')
-  import API from '@/api';
-  import EChart from '@/components/chart/echart';
-  import MiniStatistic from '@/components/widgets/statistic/MiniStatistic';
-  // import PostListCard from '@/components/widgets/card/PostListCard';
-  import ProfileCard from '@/components/widgets/card/ProfileCard';
-  // import PostSingleCard from '@/components/widgets/card/PostSingleCard';
-  // import WeatherCard from '@/components/widgets/card/WeatherCard';
-  import PlainTable from '@/components/widgets/list/PlainTable';
-  import PlainTableOrder from '@/components/widgets/list/PlainTableOrder';
-  import VWidget from '@/components/VWidget';
-  import Material from 'vuetify/es5/util/colors';
-  import VCircle from '@/components/circle/VCircle';
-  import BoxChart from '@/components/widgets/chart/BoxChart';
-  import ChatWindow from '@/components/chat/ChatWindow';
-  import CircleStatistic from '@/components/widgets/statistic/CircleStatistic';
-  import LinearStatistic from '@/components/widgets/statistic/LinearStatistic';
+  import API from '@/api'
+  import EChart from '@/components/chart/echart'
+  import MiniStatistic from '@/components/widgets/statistic/MiniStatistic'
+  // import PostListCard from '@/components/widgets/card/PostListCard'
+  import ProfileCard from '@/components/widgets/card/ProfileCard'
+  // import PostSingleCard from '@/components/widgets/card/PostSingleCard'
+  // import WeatherCard from '@/components/widgets/card/WeatherCard'
+  import PlainTable from '@/components/widgets/list/PlainTable'
+  import PlainTableOrder from '@/components/widgets/list/PlainTableOrder'
+  import VWidget from '@/components/VWidget'
+  import Material from 'vuetify/es5/util/colors'
+  import VCircle from '@/components/circle/VCircle'
+  import BoxChart from '@/components/widgets/chart/BoxChart'
+  import ChatWindow from '@/components/chat/ChatWindow'
+  import CircleStatistic from '@/components/widgets/statistic/CircleStatistic'
+  import LinearStatistic from '@/components/widgets/statistic/LinearStatistic'
 
   export default {
     layout: 'dashboard',
@@ -243,7 +243,7 @@
           caption: 'increase',
           percent: 15,
           icon: {
-            label: 'trending_up',
+            label: 'mdi-trending-up',
             color: 'success'
           },
           linear: {
@@ -257,7 +257,7 @@
           caption: 'increase',
           percent: 10,
           icon: {
-            label: 'trending_down',
+            label: 'mdi-trending-down',
             color: 'error'
           },
           linear: {
@@ -271,7 +271,7 @@
           caption: 'increase',
           percent: 50,
           icon: {
-            label: 'arrow_upward',
+            label: 'mdi-arrow-upward',
             color: 'info'
           },
           linear: {
@@ -287,7 +287,7 @@
           caption: 'email opens',
           percent: 15,
           icon: {
-            label: 'email',
+            label: 'mdi-email',
             color: 'info'
           },
           linear: {
@@ -301,7 +301,7 @@
           caption: 'tasks completed.',
           percent: 90,
           icon: {
-            label: 'list',
+            label: 'mdi-list',
             color: 'primary'
           },
           linear: {
@@ -315,7 +315,7 @@
           caption: 'issues fixed.',
           percent: 100,
           icon: {
-            label: 'bug_report',
+            label: 'mdi-bug-report',
             color: 'primary'
           },
           linear: {

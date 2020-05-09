@@ -41,7 +41,7 @@
                   <v-text-field
                     v-model="form.username"
                     :rules="usernameRules"
-                    prepend-icon="person"
+                    prepend-icon="mdi-account"
                     clearable
                     :label="$t('signin.username')"
                     @keyup.enter.native="login"
@@ -50,9 +50,9 @@
                   <v-text-field
                     v-model="form.password"
                     :rules="passwordRules"
-                    prepend-icon="lock"
+                    prepend-icon="mdi-lock"
                     @keyup.enter.native="login"
-                    :append-icon="showPwd ? 'visibility_off' : 'visibility'"
+                    :append-icon="showPwd ? 'mdi-eye-off' : 'mdi-eye'"
                     :type="showPwd ? 'text' : 'password'"
                     @click:append="showPwd = !showPwd"
                     :label="$t('signin.password')"

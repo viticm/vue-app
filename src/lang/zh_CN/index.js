@@ -9,6 +9,7 @@
  * @uses The zh_CN lang.
  */
 import route from './route'
+import common from './common'
 
 export default {
   route,
@@ -19,5 +20,6 @@ export default {
     password: '密码',
     forgetPassword: '忘记密码？',
     thirdparty: '第三方登录'
-  }
+  },
+  common: common,
 }

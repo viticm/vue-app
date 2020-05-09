@@ -10,6 +10,8 @@
  */
 
 import route from './route'
+import common from './common'
+
 export default {
   route,
   signin: {
@@ -19,5 +21,6 @@ export default {
     password: 'password',
     forgetPassword: 'Forget Password?',
     thirdparty: 'thirdparty'
-  }
+  },
+  common: common,
 }

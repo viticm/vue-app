@@ -3,7 +3,7 @@
   <v-card class="chat-room">
     <v-toolbar dense flat class="white chat-room--toolbar" light>
       <v-btn icon>
-        <v-icon color="text--secondary">keyboard_arrow_left</v-icon>
+        <v-icon color="text--secondary">mdi-keyboard-arrow-left</v-icon>
       </v-btn>
       <template v-if="chat.users">
         <v-avatar size="32" class="avatar-stack" v-for="(user_id,index) in chat.users" :key="index">
@@ -15,7 +15,7 @@
       <v-spacer></v-spacer>
       <v-tooltip bottom>
         <v-btn icon v-slot:activator="{ on  }">
-          <v-icon color="text--secondary" v-on="on">add</v-icon>
+          <v-icon color="text--secondary" v-on="on">mdi-add</v-icon>
         </v-btn>
         <span>Add user</span>
       </v-tooltip>
@@ -44,11 +44,11 @@
         flat
         clearable 
         solo 
-        append-icon="send" 
+        append-icon="mdi-email-send" 
         label="Type some message here">
-        <v-icon slot="append-icon">send</v-icon>
-        <v-icon slot="append-icon" class="mx-2">photo</v-icon>
-        <v-icon slot="append-icon">face</v-icon>
+        <v-icon slot="append-icon">mdi-email-send</v-icon>
+        <v-icon slot="append-icon" class="mx-2">mdi-photo</v-icon>
+        <v-icon slot="append-icon">mdi-face</v-icon>
       </v-text-field>
     </v-card-actions>
   </v-card>
