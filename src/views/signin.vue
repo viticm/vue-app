@@ -19,6 +19,9 @@
     <div class="panel-content">
       <v-app class="login-con">
         <!-- <v-spacer></v-spacer> -->
+        <div align="right">
+          <locales-menu />
+        </div>
         <v-content>
           <v-container
             fluid
@@ -29,7 +32,6 @@
               justify-center
             >
               <v-flex class="frame">
-                <langbar />
                 <h1 v-if="!isMobile">
                   {{ $t('signin.title')}}
                 </h1>
@@ -111,13 +113,13 @@
 import { isMobile } from '@/utils/util'
 import { validUsername, validEmail  } from '@/utils/validate'
 // import BaseLangbar from '@/components/widgets/BaseLangbar.vue';
-import Langbar from '@/components/widgets/Langbar.vue'
+import LocalesMenu from '@/components/widgets/LocalesMenu.vue'
 
 export default {
   name: 'Signin',
   components: {
     // BaseLangbar,
-    Langbar,
+    LocalesMenu,
   },
   data() {
     return {

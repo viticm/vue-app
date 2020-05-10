@@ -8,7 +8,8 @@ const state = {
   },
   device: 'desktop',
   language: getLanguage(),
-  size: Cookies.get('size') || 'medium'
+  size: Cookies.get('size') || 'medium',
+  drawer: true
 }
 
 const mutations = {
@@ -31,12 +32,15 @@ const mutations = {
   },
   SET_LANGUAGE: (state, language) => {
     state.language = language
-    Cookies.set('language', language)
+    Cookies.set('vue-app-language', language)
     // localStorage.setItem('VUE-APP_LANGUAGE', language)
   },
   SET_SIZE: (state, size) => {
     state.size = size
     Cookies.set('size', size)
+  },
+  TOGGLE_DRAWER: (state, drawer) => {
+    state.drawer = drawer
   }
 }
 
@@ -55,6 +59,9 @@ const actions = {
   },
   setSize({ commit }, size) {
     commit('SET_SIZE', size)
+  },
+  toggleDrawer({ commit }, size) {
+    commit('TOGGLE_DRAWER', size)
   }
 }
 

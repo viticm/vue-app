@@ -26,5 +26,10 @@ export default {
   save: '保存',
   cancel: '取消',
   actions: '操作',
+  translations: '语言',
+  profile: '简介',
+  settings: '设置',
+  comfirm: '确认',
+  warning: '警告',
 
 }

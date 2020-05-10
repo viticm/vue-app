@@ -10,10 +10,12 @@
  */
 export default {
 
-  dashboard: 'dashboard',
+  dashboard: 'Dashboard',
   documentation: 'documentation',
   i18n: 'i18n',
   theme: 'theme',
   permissions: 'permissions',
+  routes: 'Routes',
+  settings: 'Settings',
 
 }

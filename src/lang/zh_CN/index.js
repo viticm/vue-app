@@ -12,14 +12,16 @@ import route from './route'
 import common from './common'
 
 export default {
-  route,
+  route: route,
   signin: {
     title: '系统登录',
     signin: '登录',
+    signout: '登出',
     username: '账号',
     password: '密码',
     forgetPassword: '忘记密码？',
-    thirdparty: '第三方登录'
+    thirdparty: '第三方登录',
+    signoutComfirm: '你确定要登出？'
   },
   common: common,
 }

@@ -24,7 +24,12 @@ export default {
   new: 'new',
   edit: 'edit',
   save: 'save',
-  cancel: 'cancel',
+  cancel: 'Cancel',
   actions: 'actions',
+  translations: 'Translations',
+  profile: 'Profile',
+  settings: 'Settings',
+  comfirm: 'Comfirm',
+  warning: 'Warning',
 
 }

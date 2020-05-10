@@ -15,5 +15,7 @@ export default {
   i18n: '国际化',
   theme: '主题',
   permissions: '权限',
+  settings: '设置',
+  routes: '路由',
 
 }

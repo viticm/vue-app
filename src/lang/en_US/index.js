@@ -13,14 +13,16 @@ import route from './route'
 import common from './common'
 
 export default {
-  route,
+  route: route,
   signin: {
-    title: 'system login',
-    signin: 'signin',
-    username: 'username',
-    password: 'password',
+    title: 'System login',
+    signin: 'Signin',
+    signout: 'Signout',
+    username: 'Username',
+    password: 'Password',
     forgetPassword: 'Forget Password?',
-    thirdparty: 'thirdparty'
+    thirdparty: 'Thirdparty',
+    signoutComfirm: 'Are you sure sign out?'
   },
   common: common,
 }

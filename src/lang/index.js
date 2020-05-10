@@ -25,31 +25,14 @@ const messages = {
     ...en,
     $vuetify: vuetify.en,
   },
-  zh: {
+  'zh-CN': {
     ...zh,
     $vuetify: vuetify.zh,
   }
 }
 
-/**
- * Available locales
- */
-export const locales = [
-  {
-    title: 'English',
-    locale: 'en',
-    abbr: 'ENG',
-  },
-  {
-    title: '中文',
-    locale: 'zh',
-    abbr: 'CHN',
-  }
-]
-
 export function getLanguage() {
-  const chooseLanguage = Cookies.get('language')
-  console.log(chooseLanguage)
+  const chooseLanguage = Cookies.get('vue-app-language')
   if (chooseLanguage) return chooseLanguage
 
   // if has not choose language

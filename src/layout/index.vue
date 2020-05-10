@@ -1,47 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
-      <v-list dense>
-        <v-list-item link to="dashboard">
-          <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="settings">
-          <v-list-item-action>
-            <v-icon>mdi-image-filter-vintage</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="route">
-          <v-list-item-action>
-            <v-icon>mdi-router</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Routes</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar
-      app
-      clipped-left
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Application</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <langbar />
-    </v-app-bar>
+    <app-drawer class="app--drawer" />
+    <app-toolbar class="app--toolbar" />
     
     <v-content>
       <v-container
@@ -64,11 +24,15 @@
 </template>
 
 <script>
-  import Langbar from '@/components/widgets/Langbar.vue'
+  import AppDrawer from '@/components/AppDrawer'
+  import AppToolbar from '@/components/AppToolbar'
+  //import LocalesMenu from '@/components/widgets/LocalesMenu.vue'
   export default {
     components: {
       // BaseLangbar,
-      Langbar,
+      // LocalesMenu,
+      AppDrawer,
+      AppToolbar,
     },
 
     props: {
@@ -76,7 +40,6 @@
     },
 
     data: () => ({
-      drawer: null,
       currentYear: new Date().getFullYear(),
     }),
 

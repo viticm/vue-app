@@ -19,7 +19,7 @@
           v-on="on"
           icon
         >
-          <v-icon>mdi-alpha-a-box-outline</v-icon>
+          <v-icon>mdi-translate</v-icon>
         </v-btn>
       </template>
       <v-list dense subheader>
@@ -52,7 +52,7 @@
 		},      
     data: () => ({
       items: [
-        { title: '中文', value: 'zh' },
+        { title: '中文', value: 'zh-CN' },
         { title: 'English', value: 'en' }
       ],
       disabled: false,
