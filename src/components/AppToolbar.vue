@@ -17,12 +17,14 @@
       :nudge-right="140" 
       :nudge-bottom="14" 
       transition="scale-transition">
-      <v-btn icon slot="activator">
-        <v-badge color="red" overlap>
-          <span slot="badge">3</span>
-          <v-icon medium>mdi-message</v-icon>
-        </v-badge>
-      </v-btn>
+      <template v-slot:activator="{ on  }">
+        <v-btn icon v-on="on">
+          <v-badge color="red" overlap>
+            <span slot="badge">3</span>
+            <v-icon medium>mdi-message</v-icon>
+          </v-badge>
+        </v-btn>
+      </template>
       <notification-list></notification-list>
     </v-menu>
 
