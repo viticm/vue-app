@@ -1,4 +1,4 @@
-import * as User from './user';
+import * as User from './user'
 
 const MailItem = [
   {
@@ -201,14 +201,14 @@ const MailItem = [
     'fromId': '28d9f265-74d7-4f85-83d4-6a21fca57dcf',
     'attachments': []
   }
-];
+]
 
 // add user to mail
 MailItem.map((item) => {
-  let users  = User.getUser();
-  item.from = users.find(x => x.uuid === item.fromId);
-  return item;
-});
+  let users  = User.getUser()
+  item.from = users.find(x => x.uuid === item.fromId)
+  return item
+})
 //
 
 const MailMenu = [
@@ -218,57 +218,57 @@ const MailMenu = [
     icon: 'email',
     to: { path: '/mail/all' },
     chip: 10
-  },  
+  },
   {
     title: 'Sent',
     group: 'email',
     icon: 'send',
     to: { path: '/mail/sent' },
     chip: 5
-  },    
+  },
   {
     title: 'Starred',
     group: 'email',
     icon: 'star',
     to: { path: '/mail/starred' },
     chip: 2
-  },  
+  },
   {
     title: 'Draft',
     group: 'email',
     icon: 'content_copy',
     to: { path: '/mail/draft' },
     chip: 3
-  },   
+  },
   {
     title: 'Trash',
     group: 'email',
     icon: 'delete',
     to: { path: '/mail/trashed' },
     chip: 1
-  },    
+  },
   { heading: 'Label' },
   { icon: 'radio_button_checked', iconColor: 'yellow', title: 'Work', iconSize: 'small', },
   { icon: 'radio_button_checked', iconColor: 'green', title: 'Client', iconSize: 'small', },
   { icon: 'radio_button_checked', iconColor: 'red', title: 'Project', iconSize: 'small', },
   { icon: 'radio_button_checked', iconColor: 'grey', title: 'Peronal', iconSize: 'small', },
 
-];
+]
 
 const getMail = (limit) => {
-  return (limit) ? MailItem.slice(0, limit) : MailItem;
-};
+  return (limit) ? MailItem.slice(0, limit) : MailItem
+}
 
 const getMailById = (uuid) => {
-  return (uuid === undefined) ? MailItem[0] : MailItem.find(x => x.uuid === uuid);
-};
+  return (uuid === undefined) ? MailItem[0] : MailItem.find(x => x.uuid === uuid)
+}
 
 const getMailByType = (type) => {
-  return (type === 'all') ? MailItem : MailItem.filter(x => x.type === type);
-};
+  return (type === 'all') ? MailItem : MailItem.filter(x => x.type === type)
+}
 export {
   getMail,
   MailMenu,
   getMailById,
   getMailByType
-};
+}

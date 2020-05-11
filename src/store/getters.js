@@ -4,6 +4,7 @@ const getters = {
   size: state => state.app.size,
   device: state => state.app.device,
   drawer: state =>state.app.drawer,
+  dark: state =>state.app.dark,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
   token: state => state.user.token,

@@ -9,7 +9,7 @@ const state = {
   device: 'desktop',
   language: getLanguage(),
   size: Cookies.get('size') || 'medium',
-  drawer: true
+  drawer: false
 }
 
 const mutations = {
@@ -60,8 +60,8 @@ const actions = {
   setSize({ commit }, size) {
     commit('SET_SIZE', size)
   },
-  toggleDrawer({ commit }, size) {
-    commit('TOGGLE_DRAWER', size)
+  toggleDrawer({ commit }, flag) {
+    commit('TOGGLE_DRAWER', flag)
   }
 }
 

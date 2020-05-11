@@ -21,6 +21,12 @@ module.exports = {
 
   /**
    * @type {boolean} true | false
+   * @description the vuetify dark theme.
+   */
+  themeDark: true,
+
+  /**
+   * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
   sidebarLogo: false,

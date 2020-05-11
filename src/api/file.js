@@ -20,7 +20,7 @@ const getFileMenu = [
     to: { path: '/media', query: { type: 'doc' }}
   },
 
-];
+]
 const Items =  [
   {
     'uuid': 'a32c4aec-54de-4ff4-b165-8571ae805598',
@@ -561,13 +561,13 @@ const Items =  [
     'ctime': '2018-03-14T09:21:32.019Z',
     'size': 15488
   }
-];
+]
 
 const getFile = (limit) => {
-  return (limit) ? Items.slice(0, limit) : Items;
-};
+  return (limit) ? Items.slice(0, limit) : Items
+}
 
 export {
   getFileMenu,
   getFile
-};
+}

@@ -26,11 +26,8 @@
 <script>
   import AppDrawer from '@/components/AppDrawer'
   import AppToolbar from '@/components/AppToolbar'
-  //import LocalesMenu from '@/components/widgets/LocalesMenu.vue'
   export default {
     components: {
-      // BaseLangbar,
-      // LocalesMenu,
       AppDrawer,
       AppToolbar,
     },
@@ -44,7 +41,7 @@
     }),
 
     created () {
-      this.$vuetify.theme.dark = true
+      this.$vuetify.theme.dark = this.$store.state.settings.themeDark
     },
   }
 </script>

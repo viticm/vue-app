@@ -7,4 +7,4 @@ export default [
   { divider: true, inset: true },
   { avatar: 'https://randomuser.me/api/portraits/men/1.jpg', title: 'Dash', subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?" },
 
-];
+]

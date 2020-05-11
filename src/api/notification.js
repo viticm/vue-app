@@ -26,4 +26,4 @@ export default [
     icon: 'mdi-email',
     timeLabel: '1 hour ago'
   }
-];
+]

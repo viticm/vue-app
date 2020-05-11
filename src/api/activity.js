@@ -32,13 +32,13 @@ const Items =   [
     text: 'Li assigned a a task to Michael'
   },
 
-];
+]
 
 const getActivity = (limit) => {
-  return (limit) ? Items.slice(0, limit) : Items;
-};
+  return (limit) ? Items.slice(0, limit) : Items
+}
 
 
 export default {
   getActivity
-};
+}

@@ -1,11 +1,13 @@
 <template>
   <div class="panel-wrapper">
+    <!--
     <span class="logo">
       <img
         src="../assets/logo.png"
         alt=""
       >
     </span>
+    -->
 
     <div class="slogan-wrapper">
       <div class="slogan">
@@ -94,16 +96,17 @@
           </v-container>
         </v-content>
 
+        <!--
         <v-footer
-          color="#fbfbfb"
           height="auto"
         >
           <v-layout>
             <v-flex text-xs-center>
-              <!-- {{ $t('common.copyrightMessage', { currentYear }) }} -->
+              <span>&copy; {{ currentYear }}</span>
             </v-flex>
           </v-layout>
         </v-footer>
+        -->
       </v-app>
     </div>
   </div>
@@ -165,6 +168,7 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+    this.$vuetify.theme.dark = this.$store.state.settings.themeDark
   },
   mounted() {
     if (this.form.username === '') {

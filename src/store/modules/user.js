@@ -1,6 +1,6 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import router, { resetRouter } from '@/router'
+import { resetRouter } from '@/router'
 
 const state = {
   token: getToken(),
@@ -104,6 +104,7 @@ const actions = {
   },
 
   // dynamically modify permissions
+  /**
   changeRoles({ commit, dispatch }, role) {
     return new Promise(async resolve => {
       const token = role + '-token'
@@ -127,6 +128,7 @@ const actions = {
       resolve()
     })
   }
+  **/
 }
 
 export default {

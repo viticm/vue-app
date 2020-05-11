@@ -4,7 +4,10 @@
       <div class="layout row ma-0">
         <div class="subheading">{{title}}</div>
         <v-spacer></v-spacer>
-        <div class="caption"> <v-icon>mdi-trending-up</v-icon>  {{subTitle}}</div>
+        <div class="caption"> 
+          <v-icon>mdi-trending-up</v-icon>  
+          {{subTitle}}
+        </div>
       </div>
     </v-card-title>
     <v-responsive class="white--text">
@@ -19,8 +22,8 @@
 </template>
 
 <script>
-import EChart from '@/components/chart/echart';
-// import Material from 'vuetify/es5/util/colors';
+import EChart from '@/components/chart/echart'
+// import Material from 'vuetify/es5/util/colors'
 
 export default {
   components: {
@@ -58,34 +61,31 @@ export default {
         ['grid.right', '0'],        
         ['color', this.chartColor],
       ]
-    };
+    }
   },
 
-  computed: {
-    computeCardDark () {
-      return this.cardColor !== 'white';  
-    },
-    computeChartOption () {
-      switch (this.type) {
+  watch: {
+    type(value) {
+      switch (value) {
         case 'bar':
-          this.defaultOption.push(['series[0].type', 'bar']);
-          this.defaultOption.push(['series[0].barWidth', '50%']);
+          this.defaultOption.push(['series[0].type', 'bar'])
+          this.defaultOption.push(['series[0].barWidth', '50%'])
           // add shadow series
-          // this.defaultOption.push(['series[1].type', 'bar']);
-          break;
+          // this.defaultOption.push(['series[1].type', 'bar'])
+          break
         case 'stack-bar':
           // set stacked bar
-          // this.defaultOption.push(['series[0].data', StackBarData]);
-          this.defaultOption.push(['series[0].type', 'bar']);
-          this.defaultOption.push(['series[0].itemStyle.normar.color', 'rgba(0,0,0,0.05)']);
-          this.defaultOption.push(['series[0].barGap', '-100%']);
+          // this.defaultOption.push(['series[0].data', StackBarData])
+          this.defaultOption.push(['series[0].type', 'bar'])
+          this.defaultOption.push(['series[0].itemStyle.normar.color', 'rgba(0,0,0,0.05)'])
+          this.defaultOption.push(['series[0].barGap', '-100%'])
           // set main series
-          // this.defaultOption.push(['series[1].data', StackData]);
-          this.defaultOption.push(['series[1].type', 'bar']);
+          // this.defaultOption.push(['series[1].data', StackData])
+          this.defaultOption.push(['series[1].type', 'bar'])
           break;  
         case 'area':
-          this.defaultOption.push(['series[0].type', 'line']);
-          this.defaultOption.push(['series[0].smooth', true]);
+          this.defaultOption.push(['series[0].type', 'line'])
+          this.defaultOption.push(['series[0].smooth', true])
           this.defaultOption.push(['xAxis.boundaryGap', false]);          
           this.defaultOption.push(['series[0].areaStyle', {}]); 
           if (this.gradient) {
@@ -102,21 +102,30 @@ export default {
                   }
                 ])
               }            
-            }]);
+            }])
           }
 
-          break;
+          break
         default:
           // line
-          this.defaultOption.push(['series[0].smooth', true]);
-          this.defaultOption.push(['xAxis.boundaryGap', false]);
-          break;
+          this.defaultOption.push(['series[0].smooth', true])
+          this.defaultOption.push(['xAxis.boundaryGap', false])
+          break
       }
-      return this.defaultOption;
+ 
+    }
+  },
+
+  computed: {
+    computeCardDark () {
+      return this.cardColor !== 'white';  
+    },
+    computeChartOption () {
+     return this.defaultOption
     }
   }
 
-};
+}
 </script>
 
 <style>
