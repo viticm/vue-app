@@ -3,10 +3,14 @@
   <v-card class="chat-room">
     <v-toolbar dense flat class="white chat-room--toolbar" light>
       <v-btn icon>
-        <v-icon color="text--secondary">mdi-keyboard-arrow-left</v-icon>
+        <v-icon color="text--secondary">mdi-message-arrow-left</v-icon>
       </v-btn>
       <template v-if="chat.users">
-        <v-avatar size="32" class="avatar-stack" v-for="(user_id,index) in chat.users" :key="index">
+        <v-avatar 
+          size="32" 
+          class="avatar-stack" 
+          v-for="(user_id,index) in chat.users" 
+          :key="index">
           <img :src="getAvatar(user_id)" alt="">
         </v-avatar>  
       </template>
@@ -20,18 +24,29 @@
         <span>Add user</span>
       </v-tooltip>
     </v-toolbar>    
-    <vue-perfect-scrollbar class="chat-room--scrollbar grey lighten-5" v-bind:style="computeHeight">
+    <vue-perfect-scrollbar 
+      class="chat-room--scrollbar grey lighten-5" 
+      v-bind:style="computeHeight">
       <v-card-text class="chat-room--list pa-3">
         <template v-for="(item, index) in chat.messages">
-          <div v-bind:class="[ index % 2 == 0 ? 'reverse' : '']" class="messaging-item layout row my-4" :key="index">
+          <div 
+            v-bind:class="[ index % 2 == 0 ? 'reverse' : '']" 
+            class="messaging-item layout row my-4" 
+            :key="index">
             <v-avatar class="indigo mx-1" size="40">
               <img v-bind:src="item.user.avatar" alt="">
             </v-avatar>
             <div class="messaging--body layout column mx-2">
-              <p :value="true" v-bind:class="[ index % 2 == 0 ? 'primary white--text' : 'white']" class="pa-2">
+              <p 
+                :value="true" 
+                v-bind:class="[ index % 2 == 0 ? 
+                'primary white--text' : 'light-green darken-1']" 
+                class="pa-2">
                 {{item.text}}
               </p>
-              <div class="caption px-2 text--secondary">{{new Date(item.created_at).toLocaleString()}}</div>
+              <div class="green--text text--darken-1">
+                {{new Date(item.created_at).toLocaleString()}}
+              </div>
             </div>
             <v-spacer></v-spacer>
           </div>

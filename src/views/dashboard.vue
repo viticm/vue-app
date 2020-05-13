@@ -178,8 +178,8 @@
                   <v-circle dot large :color="item.color"></v-circle>
                 </div>
                 <div class="timeline-content">
-                  <time datetime="2018" class="subheading">{{item.timeString}}</time>
-                  <div class="py-2 text--secondary" v-html="item.text"></div>
+                  <time datetime="2018" class="red--text">{{item.timeString}}</time>
+                  <div class="blue--text text--lighten-3" v-html="item.text"></div>
                 </div>
               </li>
             </ol>

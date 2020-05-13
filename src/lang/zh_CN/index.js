@@ -10,6 +10,7 @@
  */
 import route from './route'
 import common from './common'
+import setting from './setting'
 
 export default {
   route: route,
@@ -24,4 +25,5 @@ export default {
     signoutComfirm: '你确定要登出？'
   },
   common: common,
+  setting: setting
 }

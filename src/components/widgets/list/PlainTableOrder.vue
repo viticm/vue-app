@@ -20,7 +20,15 @@
             <td>{{ props.item.id }}</td>
             <td class="text-xs-left">{{ props.item.product }}</td>
             <td class="text-xs-left">{{ props.item.price }}</td>
-            <td class="text-xs-left"><v-chip label small :color="getColorByStatus(props.item.status)" text-color="white" >{{ props.item.status }}</v-chip></td>
+            <td class="text-xs-left">
+              <v-chip 
+                label 
+                small 
+                :color="getColorByStatus(props.item.status)" 
+                text-color="white" >
+                {{ props.item.status }}
+              </v-chip>
+            </td>
           </template>
         </v-data-table>
       </template>

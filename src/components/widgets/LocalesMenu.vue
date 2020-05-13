@@ -71,7 +71,8 @@
       currentLanguage () {
         const locale = this.$i18n.locale
         console.log("locale", locale)
-        return this.languages.find(l => l.alternate === locale || l.locale === locale)
+        return this.languages.find(
+          l => l.alternate === locale || l.locale === locale)
       },
     },
 
@@ -88,7 +89,9 @@
         }
 
         // this.$router.replace({ params: { lang } })
-        this.$dialog.message.success('Switch Language Success', {position: 'top'})
+        this.$dialog.message.success(
+          'Switch Language Success', 
+          {position: 'top'})
 				this.$i18n.locale = lang                                                     
 
         if (lang !== 'eo-UY') {

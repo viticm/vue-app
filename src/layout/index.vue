@@ -17,6 +17,11 @@
       </v-container>
     </v-content>
 
+    <app-right-settings 
+      ref="rightSettings" 
+      @toggleTemporary="toggleTemporary"
+    />
+
     <v-footer app>
       <span>&copy; {{ currentYear }}</span>
     </v-footer>
@@ -26,10 +31,12 @@
 <script>
   import AppDrawer from '@/components/AppDrawer'
   import AppToolbar from '@/components/AppToolbar'
+  import AppRightSettings from '@/components/AppRightSettings.vue'
   export default {
     components: {
       AppDrawer,
       AppToolbar,
+      AppRightSettings
     },
 
     props: {
@@ -43,5 +50,13 @@
     created () {
       this.$vuetify.theme.dark = this.$store.state.settings.themeDark
     },
+
+    methods: {
+      toggleTemporary(val) {
+        if (this.$refs.sidebar) { 
+          this.$refs.sidebar.toggleTemporary(val)
+        }
+      }
+    }
   }
 </script>
