@@ -70,7 +70,6 @@
     computed: {
       currentLanguage () {
         const locale = this.$i18n.locale
-        console.log("locale", locale)
         return this.languages.find(
           l => l.alternate === locale || l.locale === locale)
       },

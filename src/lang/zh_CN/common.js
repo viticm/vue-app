@@ -31,5 +31,6 @@ export default {
   settings: '设置',
   comfirm: '确认',
   warning: '警告',
+  autoUpdate: '自动更新',
 
 }

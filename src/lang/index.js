@@ -11,12 +11,12 @@
 
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import Cookies from 'js-cookie'
 
 import settings from '@/settings'
 import vuetify from '@/lang/vuetify'
 import en from './en_US'
 import zh from './zh_CN'
+import { storeGet } from '@/utils/store'
 
 Vue.use(VueI18n)
 
@@ -32,7 +32,7 @@ const messages = {
 }
 
 export function getLanguage() {
-  const chooseLanguage = Cookies.get('vue-app-language')
+  const chooseLanguage = storeGet('VUE-APP-LANGUAGE')
   if (chooseLanguage) return chooseLanguage
 
   // if has not choose language

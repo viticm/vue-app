@@ -197,7 +197,6 @@
 </template>
 
 <script>
-  console.log('The dashboard===========================')
   import API from '@/api'
   import EChart from '@/components/chart/echart'
   import MiniStatistic from '@/components/widgets/statistic/MiniStatistic'

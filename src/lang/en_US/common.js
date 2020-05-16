@@ -31,5 +31,6 @@ export default {
   settings: 'Settings',
   comfirm: 'Comfirm',
   warning: 'Warning',
+  autoUpdate: 'Auto Update',
 
 }

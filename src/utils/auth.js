@@ -1,15 +1,15 @@
-import Cookies from 'js-cookie'
+import { storeGet, storeSet, storeRemove } from '@/utils/store'
 
-const TokenKey = 'Vue-App-Token'
+const TokenKey = 'VUE-APP-TOKEN'
 
 export function getToken() {
-  return Cookies.get(TokenKey)
+  return storeGet(TokenKey)
 }
 
 export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+  return storeSet(TokenKey, token)
 }
 
 export function removeToken() {
-  return Cookies.remove(TokenKey)
+  return storeRemove(TokenKey)
 }

@@ -1,14 +1,14 @@
-import Cookies from 'js-cookie'
+import { storeGet, storeSet } from '@/utils/store'
 import { getLanguage } from '@/lang/index'
 
 const state = {
   sidebar: {
-    opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+    opened: storeGet('sidebarStatus') ? !!+storeGet('sidebarStatus') : true,
     withoutAnimation: false
   },
   device: 'desktop',
   language: getLanguage(),
-  size: Cookies.get('size') || 'medium',
+  size: storeGet('size') || 'medium',
   drawer: false
 }
 
@@ -17,13 +17,13 @@ const mutations = {
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
     if (state.sidebar.opened) {
-      Cookies.set('sidebarStatus', 1)
+      storeSet('sidebarStatus', 1)
     } else {
-      Cookies.set('sidebarStatus', 0)
+      storeSet('sidebarStatus', 0)
     }
   },
   CLOSE_SIDEBAR: (state, withoutAnimation) => {
-    Cookies.set('sidebarStatus', 0)
+    storeSet('sidebarStatus', 0)
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   },
@@ -32,12 +32,12 @@ const mutations = {
   },
   SET_LANGUAGE: (state, language) => {
     state.language = language
-    Cookies.set('vue-app-language', language)
-    // localStorage.setItem('VUE-APP_LANGUAGE', language)
+    // storeSet('vue-app-language', language)
+    storeSet('VUE-APP-LANGUAGE', language)
   },
   SET_SIZE: (state, size) => {
     state.size = size
-    Cookies.set('size', size)
+    storeSet('size', size)
   },
   TOGGLE_DRAWER: (state, drawer) => {
     state.drawer = drawer
