@@ -9,6 +9,7 @@ const state = {
   device: 'desktop',
   language: getLanguage(),
   size: storeGet('size') || 'medium',
+  name: storeGet('VUE-APP-NAME') || 'Application',
   drawer: false
 }
 
@@ -39,6 +40,10 @@ const mutations = {
     state.size = size
     storeSet('size', size)
   },
+  SET_NAME: (state, name) => {
+    state.name = name
+    storeSet('VUE-APP-NAME', name)
+  },
   TOGGLE_DRAWER: (state, drawer) => {
     state.drawer = drawer
   }
@@ -59,6 +64,9 @@ const actions = {
   },
   setSize({ commit }, size) {
     commit('SET_SIZE', size)
+  },
+  setName({ commit }, name) {
+    commit('SET_NAME', name)
   },
   toggleDrawer({ commit }, flag) {
     commit('TOGGLE_DRAWER', flag)

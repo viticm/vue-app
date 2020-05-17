@@ -27,6 +27,13 @@
           v-model="valid"
           :lazy-validation="lazy"
           >
+       <v-text-field
+          v-model="form.name"
+          :rules="nameRules"
+          :disabled="!isEditing"
+          color="white"
+          label="Name"
+        />
 
         <v-text-field
           v-model="form.api"
@@ -61,10 +68,14 @@
       return {
         form: {
           api: 'https://leafly.goho.co/lumen-api/',
+          name: this.$store.getters.app_name
         },
         uriRules: [
           v => !!v || 'API required',
           v => validURL(v) || 'API must be a right url',
+        ],
+        nameRules: [
+          v => !!v || 'Name required',
         ],
         hasSaved: false,
         lazy: false,
@@ -78,6 +89,7 @@
         if (true === this.$refs.form.validate()) {
           this.isEditing = !this.isEditing
           this.hasSaved = true
+          this.$store.dispatch('app/setName', this.form.name)
           console.log('api', this.form.api)
         }  
       },

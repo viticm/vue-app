@@ -32,25 +32,32 @@
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4">
+                    <v-col cols="12">
                       <v-text-field 
                         v-model="editedItem.name" 
                         :label="$t('common.name')">
                       </v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
+                    <v-col cols="12">
                       <v-text-field 
                         v-model="editedItem.path" 
                         :label="$t('common.path')">
                       </v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
+                    <v-col cols="12">
                       <v-text-field 
                         v-model="editedItem.redirect" 
                         :label="$t('common.redirect')">
                       </v-text-field>
                     </v-col>
-                    <v-col>
+                    <v-col cols="12">
+                      <v-text-field 
+                        v-model="editedItem.component" 
+                        :label="$t('common.component')">
+                      </v-text-field>
+                    </v-col>
+
+                    <v-col cols="12">
                       <v-textarea 
                         v-model="editedItem.meta" 
                         :label="$t('common.meta')"
@@ -294,7 +301,7 @@
         if (20000 == r.code) {
           this.desserts = r.data
           this.desserts.forEach(route => { 
-            if (route.name && route.name !== '') {
+            if (! isEmpty(route.name)) {
               this.routeList[route.id] = {name: route.name, id: route.id}
             }
           })

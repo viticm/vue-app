@@ -4,7 +4,7 @@
     clipped-left
   >
     <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-    <v-toolbar-title>Application</v-toolbar-title>
+    <v-toolbar-title>{{ $store.getters.app_name }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn icon href="https://github.com/viticm/vue-app">
       <v-icon>mdi-github</v-icon>
