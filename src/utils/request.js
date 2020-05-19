@@ -52,10 +52,8 @@ service.interceptors.response.use(
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
-      dialog.message.error({
-        text: res.message || 'Error',
-        type: 'error',
-        duration: 5 * 1000
+      dialog.message.error(res.message || 'Error', {
+        position: 'top'
       })
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;

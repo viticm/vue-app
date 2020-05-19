@@ -17,5 +17,6 @@ export default {
   permissions: '权限',
   settings: '设置',
   routes: '路由',
+  index: '首页',
 
 }

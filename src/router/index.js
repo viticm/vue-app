@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Layout from '@/layout'
+import { constantRoutes } from '@/router/routes'
 
 Vue.use(VueRouter)
 
@@ -24,79 +24,6 @@ Vue.use(VueRouter)
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
  */
-
-
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
-export const constantRoutes = [
-  {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path*',
-        component: () => import('@/views/redirect')
-      }
-    ]
-  },
-  {
-    path: '/signin',
-    component: () => import('@/views/signin'),
-    hidden: true
-  },
-  {
-    path: '/auth-redirect',
-    component: () => import('@/views/auth-redirect'),
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/error-page/404'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401'),
-    hidden: true
-  },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard'),
-        name: 'dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard', affix: true }
-      },
-      {
-        path: 'settings',
-        component: () => import('@/views/settings'),
-        name: 'settings',
-        meta: { title: 'settings', icon: 'settings', affix: true }
-      },
-      {
-        path: 'route',
-        component: () => import('@/views/route/table'),
-        name: 'route',
-        meta: { title: 'route', icon: 'route', affix: true }
-      }
-    ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
-
-]
 
 const createRouter = () => new VueRouter({
   // mode: 'history', // require service support

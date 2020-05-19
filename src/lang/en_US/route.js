@@ -17,5 +17,6 @@ export default {
   permissions: 'permissions',
   routes: 'Routes',
   settings: 'Settings',
+  index: 'Index',
 
 }

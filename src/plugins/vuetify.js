@@ -16,7 +16,7 @@ import * as directives from 'vuetify/es5/directives'
 // import 'material-design-icons/iconfont/material-icons.css'
 import '@mdi/font/css/materialdesignicons.css'
 import i18n from '@/lang'
-import Snackbar from '@/components/snackbar/index'
+// import Snackbar from '@/components/snackbar/index'
 import VuetifyDialog from 'vuetify-dialog'
 import 'vuetify-dialog/dist/vuetify-dialog.css'
 import echarts from 'echarts'
@@ -49,7 +49,7 @@ Vue.use(VuetifyDialog, {
   }
 })
 
-Vue.prototype.$message = Snackbar
+// Vue.prototype.$message = Snackbar
 Vue.prototype.$echarts = echarts
 
 export default vuetify

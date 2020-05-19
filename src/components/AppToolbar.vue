@@ -55,8 +55,8 @@
   </v-app-bar>
 </template>
 <script>
-  import NotificationList from '@/components/widgets/list/NotificationList';
-  import {toggleFullScreen} from '@/utils/util';
+  import NotificationList from '@/components/widgets/list/NotificationList'
+  import {toggleFullScreen} from '@/utils/util'
   import LocalesMenu from '@/components/widgets/LocalesMenu.vue'
 
   export default {
@@ -66,25 +66,25 @@
       LocalesMenu
     },
     computed: {
-      toolbarColor() {
-        return this.$vuetify.options.extra.mainNav;
+      toolbarColor () {
+        return this.$vuetify.options.extra.mainNav
       },
       drawer: {
-        get() {
+        get () {
           return this.$store.getters.drawer
         },
-        set(val) {
+        set (val) {
           this.$store.dispatch('app/toggleDrawer', val)                                
         }
       },
-      items() {
+      items () {
         return [
           {
             icon: 'mdi-account-circle',
             href: '#',
             title: this.$t('common.profile'),
             click: (e) => {
-              console.log(e);
+              console.log(e)
             }
           },
           {
@@ -92,7 +92,7 @@
             href: '#',
             title: this.$t('common.settings'),
             click: (e) => {
-              console.log(e);
+              console.log(e)
             }
           },
           {
@@ -105,10 +105,10 @@
       }
     },
     methods: {
-      handleFullScreen() {
+      handleFullScreen () {
         toggleFullScreen()
       },
-      async handleLogout() {
+      async handleLogout () {
         const r = await this.$dialog.confirm({
           text: this.$t('signin.signoutComfirm'),
           title: this.$t('common.warning'),
@@ -127,5 +127,5 @@
         }
       }
     }
-  };
+  }
 </script>

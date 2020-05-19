@@ -97,7 +97,7 @@
 												</template>
 												<template v-slot:item="data">
 													<template v-if="typeof data.item !== 'object'">
-														<v-list-item-content v-text="data.item" />
+                            <v-list-item-content v-text="data.item" />
 													</template>
 													<template v-else>
                             <!--
@@ -107,7 +107,6 @@
                             -->
 														<v-list-item-content>
 															<v-list-item-title v-html="data.item.name" />
-                              <!--<v-list-item-subtitle v-html="data.item.group" />-->
 														</v-list-item-content>
 													</template>
 												</template>
@@ -229,8 +228,8 @@
 				{ name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
 				{ name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] },
 			],
-      routeList: [ { headers: i18n.t('route.routes') } ],
-      rouetHash: [],
+      routeHash: [],
+      routeList: [ { header: i18n.t('route.routes') } ],
       editedItem: {
         name: '',
         path: '',
@@ -255,6 +254,12 @@
         root: false,
         constant: false
       },
+        boolOptions: [
+          'alwaysShow',
+          'hidden',
+          'root',
+          'constant'
+        ],
     }),
 
     computed: {
@@ -302,10 +307,10 @@
           this.desserts = r.data
           this.desserts.forEach(route => { 
             if (! isEmpty(route.name)) {
-              this.routeList[route.id] = {name: route.name, id: route.id}
+              this.routeHash[route.id] = {name: route.name, id: route.id}
+              this.routeList.push(this.routeHash[route.id])
             }
           })
-          console.log('this.routeList', this.routeList)
         }
       },
 
@@ -318,13 +323,12 @@
           const childrenArray = childrenStr.split(':')
           this.editItem.children = []
           childrenArray.forEach(id => {
-            const route = this.routeList[id]
+            const route = this.routeHash[id]
             if (route) {
               this.editItem.children.push(route)
             }
           })
         }
-        console.log(this.editItem.children)
         this.dialog = true
         this.editting = true
       },
@@ -346,10 +350,14 @@
       },
 
       save () {
-        console.log('this.editItem.children', this.editItem.children)
+        // console.log('this.editItem.children', this.editItem.children)
+        this.boolOptions.forEach(name => {
+          const value = this.editedItem[name]
+          this.editedItem[name] = true === value || 1 === value ? 1 : 0
+        })
         if (this.editedIndex > -1) {
           const children = this.editItem.children.join(":")
-          console.log('this.editItem.children1', this.editItem.children)
+          // console.log('this.editItem.children1', this.editItem.children)
           Object.assign(this.desserts[this.editedIndex], this.editedItem)
           this.desserts[this.editedIndex].children = children
         } else {
@@ -359,7 +367,6 @@
       },
 
       remove (item) {
-        console.log('this.editItem.children', this.editItem.children)
         const index = this.editItem.children.indexOf(item.id)
         if (index >= 0) this.editItem.children.splice(index, 1)
       },
