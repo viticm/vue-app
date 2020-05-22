@@ -16,7 +16,10 @@ export default {
   theme: 'theme',
   permissions: 'permissions',
   routes: 'Routes',
+  routeTable: 'Route table',
   settings: 'Settings',
   index: 'Index',
-
+  pagePermission: 'Page permission',
+  rolePermission: 'Role permission',
+  directivePermission: 'Directive'
 }

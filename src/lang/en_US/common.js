@@ -11,10 +11,11 @@
 export default {
 
   name: 'name',
+  value: 'Value',
   path: 'path',
   component: 'component',
   redirect: 'redirect',
-  meta: 'meta',
+  meta: 'Meta',
   children: 'children',
   alwaysShow: 'always show',
   hidden: 'hidden',
@@ -29,8 +30,12 @@ export default {
   translations: 'Translations',
   profile: 'Profile',
   settings: 'Settings',
-  comfirm: 'Comfirm',
+  confirm: 'Confirm',
   warning: 'Warning',
   autoUpdate: 'Auto Update',
+  nameRepeat: 'Name repeat',
+  confirmRemove: 'Are you sure remove it?',
+  description: 'Description',
+  roleTable: 'Role table',
 
 }

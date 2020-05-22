@@ -124,7 +124,7 @@ export default {
     // BaseLangbar,
     LocalesMenu,
   },
-  data() {
+  data () {
     return {
       form: {
         username: 'leafly.ti@hotmail.com',

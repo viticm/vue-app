@@ -11,10 +11,11 @@
 export default {
 
   name: '名称',
+  value: '值',
   path: '路径',
   component: '模板',
   redirect: '重定向',
-  meta: 'meta',
+  meta: 'Meta',
   children: '下级',
   alwaysShow: '常显',
   hidden: '隐藏',
@@ -29,8 +30,12 @@ export default {
   translations: '语言',
   profile: '简介',
   settings: '设置',
-  comfirm: '确认',
+  confirm: '确认',
   warning: '警告',
   autoUpdate: '自动更新',
+  nameRepeat: '名称重复',
+  confirmRemove: '你确定要删除该项？',
+  description: '描述',
+  roleTable: '角色表',
 
 }

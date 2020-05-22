@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       rightDrawer: false,
-    };
+    }
   },
   methods: {
     openRightSettings() {
@@ -46,7 +46,7 @@ export default {
       this.$refs.settingOptions.changeTemporary(val);
     },
   },
-};
+}
 </script>
 
 
