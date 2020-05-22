@@ -112,7 +112,7 @@ export default {
       // console.log('name value', this.name, this.value)
     }
   },
-  props: ['items', 'rules', 'title', 'valid']
+  props: ['items', 'rules', 'title']
 
 }
 
