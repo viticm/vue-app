@@ -22,6 +22,7 @@ export default {
   permission: '权限',
   pagePermission: '页面权限',
   rolePermission: '角色权限',
-  directivePermission: '指令权限'
+  directivePermission: '指令权限',
+  icons: 'icons',
 
 }

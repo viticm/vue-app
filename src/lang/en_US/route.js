@@ -21,5 +21,6 @@ export default {
   index: 'Index',
   pagePermission: 'Page permission',
   rolePermission: 'Role permission',
-  directivePermission: 'Directive'
+  directivePermission: 'Directive',
+  icons: 'icons',
 }

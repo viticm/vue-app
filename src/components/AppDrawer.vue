@@ -28,7 +28,9 @@
             </v-col>
           </v-row>
           <v-list-group
-            v-else-if="item.children"
+            v-else-if="item.children && 
+                !(1 === item.children.length && 
+                'index' === item.children[0].path)"
             :key="item.path"
             v-model="item.model"
             :prepend-icon="getIcon(item)"
@@ -69,7 +71,8 @@
             v-else
             :key="item.name"
             link
-            :to="item.path"
+            :to="(item.redirect || item.path || '') + 
+              (item.children && item.children.length > 0 ? '/index' : '')"
           >
             <v-list-item-action v-if="item.meta && item.meta.icon">
               <v-icon>{{ item.meta.icon }}</v-icon>

@@ -37,5 +37,8 @@ export default {
   confirmRemove: 'Are you sure remove it?',
   description: 'Description',
   roleTable: 'Role table',
+  editPermission: 'Edit permission',
+  search: 'Search',
+  sensitive: 'Sensitive',
 
 }

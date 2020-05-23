@@ -40,10 +40,10 @@
               class="mx-auto"
               max-width="500"
             >
-              <v-sheet class="pa-4 primary lighten-2">
+              <v-sheet class="pa-4 indigo darken-3">
                 <v-text-field
                   v-model="search"
-                  label="Search Company Directory"
+                  :label="$t('common.search')"
                   dark
                   flat
                   solo-inverted
@@ -55,15 +55,20 @@
                   v-model="caseSensitive"
                   dark
                   hide-details
-                  label="Case sensitive search"
+                  :label="$t('common.sensitive') + $t('common.search')"
                 ></v-checkbox>
               </v-sheet>
               <v-card-text>
                 <v-treeview
                   :items="items"
+                  v-model="selection"
                   :search="search"
                   :filter="filter"
                   :open.sync="open"
+                  item-disabled="locked"
+                  :selection-type="selectionType"
+                  item-key="id"
+                  selectable
                 >
                   <template v-slot:prepend="{ item }">
                     <v-icon
@@ -73,6 +78,15 @@
                   </template>
                 </v-treeview>
               </v-card-text>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn color="blue darken-1" @click="close">
+                  {{ $t('common.cancel') }}
+                </v-btn>
+                <v-btn color="blue darken-1" @click="save">
+                  {{ $t('common.save') }}
+                </v-btn>
+              </v-card-actions>
             </v-card>
             <!--
             <v-card>
@@ -85,8 +99,8 @@
                   <v-form ref="editForm">
                     <v-row>
                       <v-col cols="12">
-                        <v-text-field 
-                          v-model="editedItem.name" 
+                        <v-text-field
+                          v-model="editedItem.name"
                           :label="$t('common.name')">
                         </v-text-field>
                       </v-col>
@@ -107,7 +121,7 @@
           @click="edit(item)"
           color="primary"
         >
-          Edit permission
+        {{ $t('common.editPermission') }}
         </v-btn>
       </template>
       <template v-slot:no-data>
@@ -120,97 +134,89 @@
 
 <script>
   import i18n from '@/lang'
-  import { getRoles } from '@/api/role'
+  import { getRoles, updateRole } from '@/api/role'
+  import { asyncRoutes, constantRoutes } from '@/router/routes'
+  import { isEmpty } from '@/utils'
   export default {
     data: () => ({
       dialog: false,
-      items: [
-        {
-          id: 1,
-          name: 'Vuetify Human Resources',
-          children: [
-            {
-              id: 2,
-              name: 'Core team',
-              children: [
-                {
-                  id: 201,
-                  name: 'John',
-                },
-                {
-                  id: 202,
-                  name: 'Kael',
-                },
-                {
-                  id: 203,
-                  name: 'Nekosaur',
-                },
-                {
-                  id: 204,
-                  name: 'Jacek',
-                },
-                {
-                  id: 205,
-                  name: 'Andrew',
-                },
-              ],
-            },
-            {
-              id: 3,
-              name: 'Administrators',
-              children: [
-                {
-                  id: 301,
-                  name: 'Ranee',
-                },
-                {
-                  id: 302,
-                  name: 'Rachel',
-                },
-              ],
-            },
-            {
-              id: 4,
-              name: 'Contributors',
-              children: [
-                {
-                  id: 401,
-                  name: 'Phlow',
-                },
-                {
-                  id: 402,
-                  name: 'Brandon',
-                },
-                {
-                  id: 403,
-                  name: 'Sean',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      items: [],
+      selection: [],
+      editedItem: null,
       open: [1, 2],
       search: null,
       caseSensitive: false,
       desserts: [],
+      // 这个树的体验并不好，可以使用leaf模式，但必须让组件返回对象，而且要
+      // 构建子树的父ID，以便在保存时保证子对象的情况下保存父对象
+      selectionType: 'independent',
     }),
 
     created () {
       this.initialize()
     },
 
+    watch: {
+      dialog (val) {
+        val || this.close()
+      }
+    },
+
     methods: {
       async initialize () {
+        this.generateTree()
         const r = await getRoles()
         if (20000 === r.code) {
           this.desserts = r.data
         }
       },
       edit (item) {
-        if (item.id) {
-          this.dialog = true
+        this.selection = item.routes
+        this.editedItem = item // Ref.
+        this.dialog = true
+      },
+      async save () {
+        if (isEmpty(this.editedItem)) {
+          return
         }
+        const data = {routes: this.selection.join(':')}
+        const r = await updateRole(this.editedItem.id, data)
+        if (20000 === r.code) {
+          this.editedItem.routes = this.selection
+        }
+        this.close()
+      },
+      generateTree () {
+        this.items = this.filterRoutes(constantRoutes, true)
+        this.items = this.items.concat(this.filterRoutes(asyncRoutes))
+      },
+      filterRoutes (routes, constant) {
+        const res = []
+        routes.forEach(route => {
+          const tmp = {}
+          if (! route.hidden) {
+            if (route.children) {
+              tmp.children = this.filterRoutes(route.children, constant)
+            } else if (constant) {
+              tmp.locked = true
+            }
+            tmp.id = route.id
+            const meta = route.meta ?? {}
+            tmp.name = isEmpty(meta.title) ?
+              route.name : i18n.t('route.' + meta.title)
+            res.push(tmp)
+          }
+        })
+        return res
+      },
+
+      close () {
+        this.editedItem = null
+        this.dialog = false
+        this.$nextTick(() => {
+          this.selection = []
+          this.search = null
+        })
       }
     },
 
@@ -228,7 +234,6 @@
             sortable: false,
             value: 'name',
           },
-          { text: i18n.t('common.name'), value: 'name' },
           { text: i18n.t('common.description'), value: 'description' },
           { text: i18n.t('common.actions'), value: 'actions', sortable: false },
         ]

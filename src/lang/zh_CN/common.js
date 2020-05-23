@@ -37,5 +37,8 @@ export default {
   confirmRemove: '你确定要删除该项？',
   description: '描述',
   roleTable: '角色表',
+  editPermission: '编辑权限',
+  search: '搜索',
+  sensitive: '敏感',
 
 }
