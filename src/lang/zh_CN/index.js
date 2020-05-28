@@ -11,6 +11,7 @@
 import route from './route'
 import common from './common'
 import setting from './setting'
+import errorLog from './error-log'
 
 export default {
   route: route,
@@ -24,6 +25,7 @@ export default {
     thirdparty: '第三方登录',
     signoutComfirm: '你确定要登出？'
   },
+  errorLog: errorLog,
   common: common,
   setting: setting
 }

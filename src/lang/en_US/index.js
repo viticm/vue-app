@@ -12,6 +12,7 @@
 import route from './route'
 import common from './common'
 import setting from './setting'
+import errorLog from './error-log'
 
 export default {
   route: route,
@@ -25,6 +26,7 @@ export default {
     thirdparty: 'Thirdparty',
     signoutComfirm: 'Are you sure sign out?'
   },
+  errorLog: errorLog,
   common: common,
   setting: setting
 }

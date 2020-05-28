@@ -109,6 +109,7 @@ export default {
       }
       newItems[this.name] = value
       this.$emit('update:items', newItems)
+      this.reset()
       // console.log('name value', this.name, this.value)
     }
   },

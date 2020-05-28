@@ -6,6 +6,7 @@
     <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     <v-toolbar-title>{{ $store.getters.app_name }}</v-toolbar-title>
     <v-spacer></v-spacer>
+    <error-log v-if="! isMobile" />
     <v-btn icon href="https://github.com/viticm/vue-app">
       <v-icon>mdi-github</v-icon>
     </v-btn>
@@ -56,12 +57,14 @@
 </template>
 <script>
   import NotificationList from '@/components/widgets/list/NotificationList'
-  import {toggleFullScreen} from '@/utils/util'
-  import LocalesMenu from '@/components/widgets/LocalesMenu.vue'
+  import { toggleFullScreen, isMobile } from '@/utils/util'
+  import LocalesMenu from '@/components/widgets/LocalesMenu'
+  import ErrorLog from '@/components/error-log'
 
   export default {
     name: 'app-toolbar',
     components: {
+      ErrorLog,
       NotificationList,
       LocalesMenu
     },
@@ -76,6 +79,9 @@
         set (val) {
           this.$store.dispatch('app/toggleDrawer', val)                                
         }
+      },
+      isMobile() {
+        return isMobile()
       },
       items () {
         return [

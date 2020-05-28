@@ -23,4 +23,8 @@ export default {
   rolePermission: 'Role permission',
   directivePermission: 'Directive',
   icons: 'icons',
+  page401: '401',
+  page404: '404',
+  errorPages: 'Error pages',
+  errorLog: 'Error log',
 }

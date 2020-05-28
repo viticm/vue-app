@@ -24,5 +24,8 @@ export default {
   rolePermission: '角色权限',
   directivePermission: '指令权限',
   icons: 'icons',
-
+  page401: '401',
+  page404: '404',
+  errorPages: '错误页',
+  errorLog: '错误日志',
 }

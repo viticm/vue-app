@@ -1,23 +1,22 @@
 import Vue from 'vue'
 import Clipboard from 'clipboard'
 
+const dialog = Vue.prototype.$dialog
+
 function clipboardSuccess() {
-  Vue.prototype.$message({
-    message: 'Copy successfully',
-    type: 'success',
-    duration: 1500
-  })
+  dialog.message.success('Copy successfully')
 }
 
 function clipboardError() {
-  Vue.prototype.$message({
-    message: 'Copy failed',
-    type: 'error'
-  })
+  dialog.message.error('Copy failed')
 }
 
-export default function handleClipboard(text, event) {
-  const clipboard = new Clipboard(event.target, {
+export default function handleClipboard(target, text) {
+  if (! Clipboard.isSupported()) {
+    clipboardError()
+    return
+  }
+  const clipboard = new Clipboard(target, {
     text: () => text
   })
   clipboard.on('success', () => {
@@ -28,5 +27,5 @@ export default function handleClipboard(text, event) {
     clipboardError()
     clipboard.destroy()
   })
-  clipboard.onClick(event)
+  // clipboard.onClick(event)
 }

@@ -133,112 +133,112 @@
 </template>
 
 <script>
-  import i18n from '@/lang'
-  import { getRoles, updateRole } from '@/api/role'
-  import { asyncRoutes, constantRoutes } from '@/router/routes'
-  import { isEmpty } from '@/utils'
-  export default {
-    data: () => ({
-      dialog: false,
-      items: [],
-      selection: [],
-      editedItem: null,
-      open: [1, 2],
-      search: null,
-      caseSensitive: false,
-      desserts: [],
-      // 这个树的体验并不好，可以使用leaf模式，但必须让组件返回对象，而且要
-      // 构建子树的父ID，以便在保存时保证子对象的情况下保存父对象
-      selectionType: 'independent',
-    }),
+import i18n from '@/lang'
+import { getRoles, updateRole } from '@/api/role'
+import { asyncRoutes, constantRoutes } from '@/router/routes'
+import { isEmpty } from '@/utils'
+export default {
+  data: () => ({
+    dialog: false,
+    items: [],
+    selection: [],
+    editedItem: null,
+    open: [1, 2],
+    search: null,
+    caseSensitive: false,
+    desserts: [],
+    // 这个树的体验并不好，可以使用leaf模式，但必须让组件返回对象，而且要
+    // 构建子树的父ID，以便在保存时保证子对象的情况下保存父对象
+    selectionType: 'independent',
+  }),
 
-    created () {
-      this.initialize()
-    },
+  created () {
+    this.initialize()
+  },
 
-    watch: {
-      dialog (val) {
-        val || this.close()
+  watch: {
+    dialog (val) {
+      val || this.close()
+    }
+  },
+
+  methods: {
+    async initialize () {
+      this.generateTree()
+      const r = await getRoles()
+      if (20000 === r.code) {
+        this.desserts = r.data
       }
     },
-
-    methods: {
-      async initialize () {
-        this.generateTree()
-        const r = await getRoles()
-        if (20000 === r.code) {
-          this.desserts = r.data
-        }
-      },
-      edit (item) {
-        this.selection = item.routes
-        this.editedItem = item // Ref.
-        this.dialog = true
-      },
-      async save () {
-        if (isEmpty(this.editedItem)) {
-          return
-        }
-        const data = {routes: this.selection.join(':')}
-        const r = await updateRole(this.editedItem.id, data)
-        if (20000 === r.code) {
-          this.editedItem.routes = this.selection
-        }
-        this.close()
-      },
-      generateTree () {
-        this.items = this.filterRoutes(constantRoutes, true)
-        this.items = this.items.concat(this.filterRoutes(asyncRoutes))
-      },
-      filterRoutes (routes, constant) {
-        const res = []
-        routes.forEach(route => {
-          const tmp = {}
-          if (! route.hidden) {
-            if (route.children) {
-              tmp.children = this.filterRoutes(route.children, constant)
-            } else if (constant) {
-              tmp.locked = true
-            }
-            tmp.id = route.id
-            const meta = route.meta ?? {}
-            tmp.name = isEmpty(meta.title) ?
-              route.name : i18n.t('route.' + meta.title)
-            res.push(tmp)
+    edit (item) {
+      this.selection = item.routes
+      this.editedItem = item // Ref.
+      this.dialog = true
+    },
+    async save () {
+      if (isEmpty(this.editedItem)) {
+        return
+      }
+      const data = {routes: this.selection.join(':')}
+      const r = await updateRole(this.editedItem.id, data)
+      if (20000 === r.code) {
+        this.editedItem.routes = this.selection
+      }
+      this.close()
+    },
+    generateTree () {
+      this.items = this.filterRoutes(constantRoutes, true)
+      this.items = this.items.concat(this.filterRoutes(asyncRoutes))
+    },
+    filterRoutes (routes, constant) {
+      const res = []
+      routes.forEach(route => {
+        const tmp = {}
+        if (! route.hidden) {
+          if (route.children) {
+            tmp.children = this.filterRoutes(route.children, constant)
+          } else if (constant) {
+            tmp.locked = true
           }
-        })
-        return res
-      },
-
-      close () {
-        this.editedItem = null
-        this.dialog = false
-        this.$nextTick(() => {
-          this.selection = []
-          this.search = null
-        })
-      }
+          tmp.id = route.id
+          const meta = route.meta ?? {}
+          tmp.name = isEmpty(meta.title) ?
+            route.name : i18n.t('route.' + meta.title)
+          res.push(tmp)
+        }
+      })
+      return res
     },
 
-    computed: {
-      filter () {
-        return this.caseSensitive
-          ? (item, search, textKey) => item[textKey].indexOf(search) > -1
-          : undefined
-      },
-      headers () {
-        return [
-          {
-            text: i18n.t('common.name'),
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: i18n.t('common.description'), value: 'description' },
-          { text: i18n.t('common.actions'), value: 'actions', sortable: false },
-        ]
-      },
-    },
+    close () {
+      this.editedItem = null
+      this.dialog = false
+      this.$nextTick(() => {
+        this.selection = []
+        this.search = null
+      })
+    }
+  },
 
-  }
+  computed: {
+    filter () {
+      return this.caseSensitive
+        ? (item, search, textKey) => item[textKey].indexOf(search) > -1
+        : undefined
+    },
+    headers () {
+      return [
+        {
+          text: i18n.t('common.name'),
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: i18n.t('common.description'), value: 'description' },
+        { text: i18n.t('common.actions'), value: 'actions', sortable: false },
+      ]
+    },
+  },
+
+}
 </script>

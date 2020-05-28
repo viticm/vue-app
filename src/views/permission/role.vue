@@ -104,152 +104,152 @@
 </template>
 
 <script>
-  import i18n from '@/lang'
-  import { getRoles, updateRole, addRole, deleteRole } from '@/api/role'
-  import { constantRoutes } from '@/router/routes'
-  import { validAlphabets } from '@/utils/validate'
-  export default {
-    data: () => ({
-      dialog: false,
-      desserts: [],
-      defaultItem: {
-        name: '',
-        key: '',
-        description: '',
-        routes: ''
-      },
-      editedItem: {
-        name: '',
-        key: '',
-        description: '',
-        routes: ''
-      },
-      nameRules: [
-        v => !!v || 'Name required',
-        v => validAlphabets(v) || 'Name invalid',
-      ],
-      keyRules: [
-        v => !!v || 'Key required',
-        v => validAlphabets(v) || 'Name invalid',
-      ],
-      descriptionRules: [
-        v => !!v || 'Description required',
-      ],
-      editedIndex: -1
-    }),
-
-    created () {
-      this.initialize()
+import i18n from '@/lang'
+import { getRoles, updateRole, addRole, deleteRole } from '@/api/role'
+import { constantRoutes } from '@/router/routes'
+import { validAlphabets } from '@/utils/validate'
+export default {
+  data: () => ({
+    dialog: false,
+    desserts: [],
+    defaultItem: {
+      name: '',
+      key: '',
+      description: '',
+      routes: ''
     },
+    editedItem: {
+      name: '',
+      key: '',
+      description: '',
+      routes: ''
+    },
+    nameRules: [
+      v => !!v || 'Name required',
+      v => validAlphabets(v) || 'Name invalid',
+    ],
+    keyRules: [
+      v => !!v || 'Key required',
+      v => validAlphabets(v) || 'Name invalid',
+    ],
+    descriptionRules: [
+      v => !!v || 'Description required',
+    ],
+    editedIndex: -1
+  }),
 
-    watch: {
-      dialog (val) {
-        val || this.close()
+  created () {
+    this.initialize()
+  },
+
+  watch: {
+    dialog (val) {
+      val || this.close()
+    }
+  },
+
+  methods: {
+    async initialize () {
+      const r = await getRoles()
+      if (20000 === r.code) {
+        this.desserts = r.data
       }
+      this.desserts.forEach(role => {
+        role.routes = role.routes.join(':')
+      })
+      const defaultIDs = this.filterRoutes(constantRoutes)
+      const routesStr = defaultIDs.join(':')
+      this.defaultItem.routes = routesStr
+      this.editedItem.routes = routesStr
+    },
+    filterRoutes (routes) {
+      let res = []
+      routes.forEach(route => {
+        if (! route.hidden) {
+          if (route.children) {
+            const ids = this.filterRoutes(route.children)
+            res = res.concat(ids)
+          }
+          res.push(route.id)
+        }
+      })
+      return res
     },
 
-    methods: {
-      async initialize () {
-        const r = await getRoles()
+    editItem (item) {
+      this.editedIndex = this.desserts.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+    async deleteItem (item) {
+      const index = this.desserts.indexOf(item)
+      const a = await this.$dialog.confirm({
+          text: i18n.t('common.confirmRemove'),
+          title: i18n.t('common.warning'),
+          actions: {
+            false: i18n.t('common.cancel'),
+            true: {
+              text: i18n.t('common.confirm')
+            }
+          }
+      })
+      if (a) {
+        const r = await deleteRole(item.id)
         if (20000 === r.code) {
-          this.desserts = r.data
+          this.desserts.splice(index, 1)
+          this.resetRoute()
         }
-        this.desserts.forEach(role => {
-          role.routes = role.routes.join(':')
-        })
-        const defaultIDs = this.filterRoutes(constantRoutes)
-        const routesStr = defaultIDs.join(':')
-        this.defaultItem.routes = routesStr
-        this.editedItem.routes = routesStr
-      },
-      filterRoutes (routes) {
-        let res = []
-        routes.forEach(route => {
-          if (! route.hidden) {
-            if (route.children) {
-              const ids = this.filterRoutes(route.children)
-              res = res.concat(ids)
-            }
-            res.push(route.id)
-          }
-        })
-        return res
-      },
-
-      editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
-      },
-      async deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        const a = await this.$dialog.confirm({
-            text: i18n.t('common.confirmRemove'),
-            title: i18n.t('common.warning'),
-            actions: {
-              false: i18n.t('common.cancel'),
-              true: {
-                text: i18n.t('common.confirm')
-              }
-            }
-        })
-        if (a) {
-          const r = await deleteRole(item.id)
-          if (20000 === r.code) {
-            this.desserts.splice(index, 1)
-            this.resetRoute()
-          }
-        }
-      },
-      async save () {
-        if (! this.$refs.editForm.validate()) {
-          return
-        }
-        const id = this.editedItem.id
-        const data = this.editedItem
-        const r = this.editedIndex > -1 ? 
-          await updateRole(id, data) : await addRole(data)
-        if (20000 == r.code) {
-          if (this.editedIndex > -1) {
-            Object.assign(this.desserts[this.editedIndex], data)
-          } else {
-            data.id = r.data.id
-            this.desserts.push(data)
-          }
-        }
-        this.close()
-      },
-
-      close () {
-        this.dialog = false
-        this.$refs.editForm.resetValidation()
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
       }
     },
-
-    computed: {
-      formTitle () {
-        return this.editedIndex === -1 ?
-          this.$t('common.new') :
-          this.$t('common.edit')
-      },
-      headers () {
-        return [
-          {
-            text: i18n.t('common.name'),
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: i18n.t('common.description'), value: 'description' },
-          { text: 'KEY', value: 'key' },
-          { text: i18n.t('common.actions'), value: 'actions', sortable: false },
-        ]
-      },
+    async save () {
+      if (! this.$refs.editForm.validate()) {
+        return
+      }
+      const id = this.editedItem.id
+      const data = this.editedItem
+      const r = this.editedIndex > -1 ? 
+        await updateRole(id, data) : await addRole(data)
+      if (20000 == r.code) {
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], data)
+        } else {
+          data.id = r.data.id
+          this.desserts.push(data)
+        }
+      }
+      this.close()
     },
 
-  }
+    close () {
+      this.dialog = false
+      this.$refs.editForm.resetValidation()
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    }
+  },
+
+  computed: {
+    formTitle () {
+      return this.editedIndex === -1 ?
+        this.$t('common.new') :
+        this.$t('common.edit')
+    },
+    headers () {
+      return [
+        {
+          text: i18n.t('common.name'),
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: i18n.t('common.description'), value: 'description' },
+        { text: 'KEY', value: 'key' },
+        { text: i18n.t('common.actions'), value: 'actions', sortable: false },
+      ]
+    },
+  },
+
+}
 </script>

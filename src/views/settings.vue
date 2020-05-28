@@ -61,38 +61,38 @@
 
 <script>
 
-  import { validURL } from '@/utils/validate'
+import { validURL } from '@/utils/validate'
 
-  export default {
-    data () {
-      return {
-        form: {
-          api: 'https://leafly.goho.co/lumen-api/',
-          name: this.$store.getters.app_name
-        },
-        uriRules: [
-          v => !!v || 'API required',
-          v => validURL(v) || 'API must be a right url',
-        ],
-        nameRules: [
-          v => !!v || 'Name required',
-        ],
-        hasSaved: false,
-        lazy: false,
-        valid: true,
-        isEditing: null
-      }
-    },
-
-    methods: {
-      save () {
-        if (true === this.$refs.form.validate()) {
-          this.isEditing = !this.isEditing
-          this.hasSaved = true
-          this.$store.dispatch('app/setName', this.form.name)
-          console.log('api', this.form.api)
-        }  
+export default {
+  data () {
+    return {
+      form: {
+        api: 'https://leafly.goho.co/lumen-api/',
+        name: this.$store.getters.app_name
       },
+      uriRules: [
+        v => !!v || 'API required',
+        v => validURL(v) || 'API must be a right url',
+      ],
+      nameRules: [
+        v => !!v || 'Name required',
+      ],
+      hasSaved: false,
+      lazy: false,
+      valid: true,
+      isEditing: null
+    }
+  },
+
+  methods: {
+    save () {
+      if (true === this.$refs.form.validate()) {
+        this.isEditing = !this.isEditing
+        this.hasSaved = true
+        this.$store.dispatch('app/setName', this.form.name)
+        console.log('api', this.form.api)
+      }  
     },
-  }
+  },
+}
 </script>

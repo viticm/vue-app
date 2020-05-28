@@ -206,210 +206,210 @@
 </template>
 
 <script>
-  import { getRouteList, saveRoute, deleteRoute } from '@/api/route'
-  import { isEmpty } from '@/utils'
-  import i18n from '@/lang'
-  import SmartForm from '@/components/widgets/SmartForm'
-  export default {
-    components: {
-      SmartForm
+import { getRouteList, saveRoute, deleteRoute } from '@/api/route'
+import { isEmpty } from '@/utils'
+import i18n from '@/lang'
+import SmartForm from '@/components/widgets/SmartForm'
+export default {
+  components: {
+    SmartForm
+  },
+  data: () => ({
+    autoUpdate: false,
+    dialog: false,
+    editting: false,
+    isUpdating: false,
+    desserts: [],
+    editedIndex: -1,
+    routeHash: [],
+    routeList: [ { header: i18n.t('route.routes') } ],
+    editedItem: {
+      name: '',
+      path: '',
+      redirect: '',
+      component: '',
+      meta: {},
+      children: [],
+      alwaysShow: false,
+      hidden: false,
+      root: false,
+      constant: false
     },
-    data: () => ({
-      autoUpdate: false,
-      dialog: false,
-      editting: false,
-      isUpdating: false,
-      desserts: [],
-      editedIndex: -1,
-      routeHash: [],
-      routeList: [ { header: i18n.t('route.routes') } ],
-      editedItem: {
-        name: '',
-        path: '',
-        redirect: '',
-        component: '',
-        meta: {},
-        children: [],
-        alwaysShow: false,
-        hidden: false,
-        root: false,
-        constant: false
-      },
-      defaultItem: {
-        name: '',
-        path: '',
-        redirect: '',
-        component: '',
-        meta: {},
-        children: [],
-        alwaysShow: false,
-        hidden: false,
-        root: false,
-        constant: false
-      },
-      boolOptions: [
-        'alwaysShow',
-        'hidden',
-        'root',
-        'constant'
-      ],
-    }),
-
-    computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? 
-          this.$t('common.new') : 
-          this.$t('common.edit')
-      },
-      headers () {
-        return [
-          {
-            text: i18n.t('common.name'),
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: i18n.t('common.path'), value: 'path' },
-          { text: i18n.t('common.component'), value: 'component' },
-          { text: i18n.t('common.redirect'), value: 'redirect' },
-          { text: i18n.t('common.meta'), value: 'meta', sortable: false},
-          { text: i18n.t('common.children'), value: 'children', sortable: false },
-          { text: i18n.t('common.alwaysShow'), value: 'alwaysShow'},
-          { text: i18n.t('common.hidden'), value: 'hidden'},
-          { text: i18n.t('common.root'), value: 'root'},
-          { text: i18n.t('common.constant'), value: 'constant'},
-          { text: i18n.t('common.actions'), value: 'actions', sortable: false },
-        ]
-      },
+    defaultItem: {
+      name: '',
+      path: '',
+      redirect: '',
+      component: '',
+      meta: {},
+      children: [],
+      alwaysShow: false,
+      hidden: false,
+      root: false,
+      constant: false
     },
+    boolOptions: [
+      'alwaysShow',
+      'hidden',
+      'root',
+      'constant'
+    ],
+  }),
 
-    watch: {
-      dialog (val) {
-        val || this.close()
+  computed: {
+    formTitle () {
+      return this.editedIndex === -1 ? 
+        this.$t('common.new') : 
+        this.$t('common.edit')
+    },
+    headers () {
+      return [
+        {
+          text: i18n.t('common.name'),
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: i18n.t('common.path'), value: 'path' },
+        { text: i18n.t('common.component'), value: 'component' },
+        { text: i18n.t('common.redirect'), value: 'redirect' },
+        { text: i18n.t('common.meta'), value: 'meta', sortable: false},
+        { text: i18n.t('common.children'), value: 'children', sortable: false },
+        { text: i18n.t('common.alwaysShow'), value: 'alwaysShow'},
+        { text: i18n.t('common.hidden'), value: 'hidden'},
+        { text: i18n.t('common.root'), value: 'root'},
+        { text: i18n.t('common.constant'), value: 'constant'},
+        { text: i18n.t('common.actions'), value: 'actions', sortable: false },
+      ]
+    },
+  },
+
+  watch: {
+    dialog (val) {
+      val || this.close()
+    }
+  },
+
+  created () {
+    this.initialize()
+  },
+
+  methods: {
+    async initialize () {
+      const r = await getRouteList()
+      if (20000 === r.code) {
+        this.desserts = r.data
+        this.resetRoute()
       }
     },
 
-    created () {
-      this.initialize()
+    resetRoute () {
+        this.routeHash = []
+        this.routeList = []
+        this.desserts.forEach(route => { 
+          if (route.root !== 1 && ! isEmpty(route.meta)) {
+            const meta = JSON.parse(route.meta)
+            if (meta && ! isEmpty(meta.title)) {
+              this.routeHash[route.id] = {
+                name: i18n.t('route.' + meta.title), id: route.id}
+              this.routeList.push(this.routeHash[route.id])
+            }
+          }
+        })
     },
 
-    methods: {
-      async initialize () {
-        const r = await getRouteList()
-        if (20000 === r.code) {
-          this.desserts = r.data
-          this.resetRoute()
-        }
-      },
-
-      resetRoute () {
-          this.routeHash = []
-          this.routeList = []
-          this.desserts.forEach(route => { 
-            if (route.root !== 1 && ! isEmpty(route.meta)) {
-              const meta = JSON.parse(route.meta)
-              if (meta && ! isEmpty(meta.title)) {
-                this.routeHash[route.id] = {
-                  name: i18n.t('route.' + meta.title), id: route.id}
-                this.routeList.push(this.routeHash[route.id])
-              }
-            }
-          })
-      },
-
-      editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.editedItem.children = []
-        if (! isEmpty(item.children)) {
-          const childrenStr = item.children
-          // console.log("childrenStr", childrenStr)
-          const childrenArray = childrenStr.split(':')
-          childrenArray.forEach(id => {
-            const route = this.routeHash[id]
-            if (route) {
-              this.editedItem.children.push(route.id)
-            }
-          })
-        }
-        this.editedItem.meta = isEmpty(item.meta) ? {} : JSON.parse(item.meta)
-        // console.log(this.editedItem.meta)
-        this.dialog = true
-        this.editting = true
-      },
-
-      async deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        const a = await this.$dialog.confirm({
-            text: i18n.t('common.confirmRemove'),
-            title: i18n.t('common.warning'),
-            actions: {
-              false: i18n.t('common.cancel'),
-              true: {
-                text: i18n.t('common.confirm')
-              }
-            }
-        })
-        // const a = confirm(i18n.t('common.confirmRemove'))
-        if (a) {
-          const r = await deleteRoute(item.id)
-          if (20000 === r.code) {
-            this.desserts.splice(index, 1)
-            this.resetRoute()
+    editItem (item) {
+      this.editedIndex = this.desserts.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.editedItem.children = []
+      if (! isEmpty(item.children)) {
+        const childrenStr = item.children
+        // console.log("childrenStr", childrenStr)
+        const childrenArray = childrenStr.split(':')
+        childrenArray.forEach(id => {
+          const route = this.routeHash[id]
+          if (route) {
+            this.editedItem.children.push(route.id)
           }
-        }
-      },
-
-      close () {
-        this.dialog = false
-        this.editting = false
-        this.editedItem.children = []
-        this.editedItem.meta = {}
-        this.$nextTick(() => {
-          // Why assign not reset the editedItem.children ? // 因为这里是浅拷贝
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
         })
-        this.$refs.metaForm.reset()
-      },
-
-      async save () {
-
-        if (! this.$refs.editForm.validate()) {
-          return
-        }
-
-        // Convert items.
-        this.boolOptions.forEach(name => {
-          const value = this.editedItem[name]
-          this.editedItem[name] = true === value || 1 === value ? 1 : 0
-        })
-        const childrenStr = this.editedItem.children.join(":")
-        const meta = JSON.stringify(this.editedItem.meta)
-        const item = { children: childrenStr, meta: meta }
-        for (let key in this.editedItem) {
-          if (key !== 'children' && key !== 'meta') {
-            item[key] = this.editedItem[key]
-          }
-        }
-        const r = await saveRoute(item)
-        if (20000 === r.code) {
-          item.id = r.data.id
-          if (this.editedIndex > -1) {
-            Object.assign(this.desserts[this.editedIndex], item)
-          } else {
-            this.desserts.push(item)
-          }
-          this.resetRoute()
-        }
-        this.close()
-      },
-
-      remove (item) {
-        const index = this.editedItem.children.indexOf(item.id)
-        if (index >= 0) this.editedItem.children.splice(index, 1)
-      },
-
+      }
+      this.editedItem.meta = isEmpty(item.meta) ? {} : JSON.parse(item.meta)
+      // console.log(this.editedItem.meta)
+      this.dialog = true
+      this.editting = true
     },
-  }
+
+    async deleteItem (item) {
+      const index = this.desserts.indexOf(item)
+      const a = await this.$dialog.confirm({
+          text: i18n.t('common.confirmRemove'),
+          title: i18n.t('common.warning'),
+          actions: {
+            false: i18n.t('common.cancel'),
+            true: {
+              text: i18n.t('common.confirm')
+            }
+          }
+      })
+      // const a = confirm(i18n.t('common.confirmRemove'))
+      if (a) {
+        const r = await deleteRoute(item.id)
+        if (20000 === r.code) {
+          this.desserts.splice(index, 1)
+          this.resetRoute()
+        }
+      }
+    },
+
+    close () {
+      this.dialog = false
+      this.editting = false
+      this.editedItem.children = []
+      this.editedItem.meta = {}
+      this.$nextTick(() => {
+        // Why assign not reset the editedItem.children ? // 因为这里是浅拷贝
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+      this.$refs.metaForm.reset()
+    },
+
+    async save () {
+
+      if (! this.$refs.editForm.validate()) {
+        return
+      }
+
+      // Convert items.
+      this.boolOptions.forEach(name => {
+        const value = this.editedItem[name]
+        this.editedItem[name] = true === value || 1 === value ? 1 : 0
+      })
+      const childrenStr = this.editedItem.children.join(":")
+      const meta = JSON.stringify(this.editedItem.meta)
+      const item = { children: childrenStr, meta: meta }
+      for (let key in this.editedItem) {
+        if (key !== 'children' && key !== 'meta') {
+          item[key] = this.editedItem[key]
+        }
+      }
+      const r = await saveRoute(item)
+      if (20000 === r.code) {
+        item.id = r.data.id
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], item)
+        } else {
+          this.desserts.push(item)
+        }
+        this.resetRoute()
+      }
+      this.close()
+    },
+
+    remove (item) {
+      const index = this.editedItem.children.indexOf(item.id)
+      if (index >= 0) this.editedItem.children.splice(index, 1)
+    },
+
+  },
+}
 </script>
