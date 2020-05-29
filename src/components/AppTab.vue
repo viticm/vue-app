@@ -9,7 +9,7 @@
  - @uses The app route tab bar.
 -->
 <template>
-  <v-toolbar v-if="! isMobile && visitedViews.length > 0" height="30px">
+  <v-toolbar v-if="visitedViews.length > 0" height="30px">
     <v-tabs
       v-model="tab"
     >
@@ -41,7 +41,6 @@
 
 <script>
 import { generateTitle } from '@/utils/i18n'
-import { isMobile } from '@/utils/util'
 import path from 'path'
 
 export default {
@@ -61,10 +60,7 @@ export default {
     },
     routes () {
       return this.$store.state.permission.routes
-    },
-    isMobile () {
-      return isMobile()
-    },
+    }
   },
   watch: {
     $route () {

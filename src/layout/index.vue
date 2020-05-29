@@ -7,13 +7,14 @@
       <v-container
         class="fill-height"
         fluid
+        top
       >
         <v-row
           align="center"
           justify="center"
         >
           <v-col>
-            <app-tab v-if="tagsView" />
+            <app-tab v-if="tagsView && ! isMobile" />
             <keep-alive :include="cachedViews">
               <router-view :key="key" />
             </keep-alive>
@@ -36,6 +37,7 @@
 <script>
 import AppDrawer from '@/components/AppDrawer'
 import AppToolbar from '@/components/AppToolbar'
+import { isMobile } from '@/utils/util'
 import AppRightSettings from '@/components/AppRightSettings'
 import AppTab from '@/components/AppTab'
 export default {
@@ -67,7 +69,10 @@ export default {
     },
     tagsView () {
       return this.$store.state.settings.tagsView
-    }
+    },
+    isMobile () {
+      return isMobile()
+    },
   },
 
   methods: {
