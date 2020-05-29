@@ -80,7 +80,7 @@
           this.$store.dispatch('app/toggleDrawer', val)                                
         }
       },
-      isMobile() {
+      isMobile () {
         return isMobile()
       },
       items () {

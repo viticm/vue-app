@@ -173,8 +173,7 @@ export const asyncRoutes = [
     meta: {
       title: 'routes',
       icon: 'mdi-chevron-up',
-      'icon-alt': 'mdi-chevron-down',
-      affix: true
+      'icon-alt': 'mdi-chevron-down'
     },
     children: [
       {
@@ -184,8 +183,7 @@ export const asyncRoutes = [
         component: () => import('@/views/route/table'),
         meta: {
           title: 'routeTable',
-          icon: 'mdi-router',
-          affix: true
+          icon: 'mdi-router'
         }
       }
     ]

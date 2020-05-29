@@ -12,7 +12,12 @@
           align="center"
           justify="center"
         >
-          <router-view />
+          <v-col>
+            <app-tab v-if="tagsView" />
+            <keep-alive :include="cachedViews">
+              <router-view :key="key" />
+            </keep-alive>
+          </v-col>
         </v-row>
       </v-container>
     </v-content>
@@ -29,34 +34,48 @@
 </template>
 
 <script>
-  import AppDrawer from '@/components/AppDrawer'
-  import AppToolbar from '@/components/AppToolbar'
-  import AppRightSettings from '@/components/AppRightSettings.vue'
-  export default {
-    components: {
-      AppDrawer,
-      AppToolbar,
-      AppRightSettings
+import AppDrawer from '@/components/AppDrawer'
+import AppToolbar from '@/components/AppToolbar'
+import AppRightSettings from '@/components/AppRightSettings'
+import AppTab from '@/components/AppTab'
+export default {
+  components: {
+    AppDrawer,
+    AppToolbar,
+    AppRightSettings,
+    AppTab
+  },
+
+  props: {
+    source: String,
+  },
+
+  data: () => ({
+    currentYear: new Date().getFullYear(),
+  }),
+
+  created () {
+    this.$vuetify.theme.dark = this.$store.state.settings.themeDark
+  },
+
+  computed: {
+    cachedViews () { 
+      return this.$store.state.tagsView.cachedViews 
     },
-
-    props: {
-      source: String,
+    key () {
+      return this.$route.path
     },
+    tagsView () {
+      return this.$store.state.settings.tagsView
+    }
+  },
 
-    data: () => ({
-      currentYear: new Date().getFullYear(),
-    }),
-
-    created () {
-      this.$vuetify.theme.dark = this.$store.state.settings.themeDark
-    },
-
-    methods: {
-      toggleTemporary(val) {
-        if (this.$refs.sidebar) { 
-          this.$refs.sidebar.toggleTemporary(val)
-        }
+  methods: {
+    toggleTemporary(val) {
+      if (this.$refs.sidebar) { 
+        this.$refs.sidebar.toggleTemporary(val)
       }
     }
   }
+}
 </script>

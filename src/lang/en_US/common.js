@@ -40,5 +40,8 @@ export default {
   editPermission: 'Edit permission',
   search: 'Search',
   sensitive: 'Sensitive',
-
+  refresh: 'Refresh',
+  close: 'Close',
+  closeAll: 'Close all',
+  closeOthers: 'Close others',
 }

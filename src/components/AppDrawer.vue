@@ -4,8 +4,8 @@
     app
     clipped
   >
-		<v-list dense>
-			<template v-for="item in items">
+    <v-list dense>
+      <template v-for="item in items">
         <template v-if="! item.hidden">
           <v-row
             v-if="item.heading"
@@ -87,8 +87,8 @@
             </v-list-item-content>
           </v-list-item>
           </template>
-			</template>
-		</v-list>
+      </template>
+    </v-list>
   </v-navigation-drawer>
 </template>
 

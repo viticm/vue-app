@@ -40,5 +40,8 @@ export default {
   editPermission: '编辑权限',
   search: '搜索',
   sensitive: '敏感',
-
+  refresh: '刷新',
+  close: '关闭',
+  closeAll: '关闭所有',
+  closeOthers: '关闭其他',
 }
