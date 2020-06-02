@@ -31,18 +31,28 @@
 
     <locales-menu />
 
-    <v-menu offset-y origin="center center" :nudge-right="140" :nudge-bottom="10" transition="scale-transition">
+    <v-menu offset-y origin="center center" 
+      :nudge-right="140" 
+      :nudge-bottom="10" 
+      transition="scale-transition">
       <template v-slot:activator="{ on  }">
         <v-btn icon large v-on="on">
           <v-avatar size="35px">
-            <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif" alt="Leafly"/>
+            <img :src="avatar" alt="Leafly"/>
           </v-avatar>
         </v-btn>
       </template>
       <v-list dense>
-        <v-list-item v-for="(item,index) in items" :to="!item.href ? { name: item.name } : null" :href="item.href"
-                     @click="item.click" ripple="ripple" :disabled="item.disabled" :target="item.target" rel="noopener"
-                     :key="index">
+        <v-list-item 
+              v-for="(item,index) in items" 
+              :to="!item.href ? { name: item.name, path: item.path } : null" 
+              :href="item.href"
+              @click="item.click" 
+              ripple="ripple" 
+              :disabled="item.disabled" 
+              :target="item.target" 
+              rel="noopener"
+              :key="index">
           <v-list-item-action v-if="item.icon">
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -80,6 +90,9 @@ export default {
         this.$store.dispatch('app/toggleDrawer', val)                                
       }
     },
+    avatar () {
+      return this.$store.getters.avatar
+    },
     isMobile () {
       return isMobile()
     },
@@ -87,18 +100,18 @@ export default {
       return [
         {
           icon: 'mdi-account-circle',
-          href: '#',
+          path: '/profile',
           title: this.$t('common.profile'),
           click: () => {
-            this.$router.push('/profile')
+            // this.$router.push('/profile')
           }
         },
         {
           icon: 'mdi-image-filter-vintage',
-          href: '#',
+          path: '/settings',
           title: this.$t('common.settings'),
           click: () => {
-            this.$router.push('/settings')
+            // this.$router.push('/settings')
           }
         },
         {
