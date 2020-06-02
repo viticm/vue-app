@@ -52,8 +52,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     meta: {
       title: 'index',
-      icon: 'mdi-chevron-up',
-      'icon-alt': 'mdi-chevron-down',
+      icon: 'mdi-home',
       affix: true
     },
     children: [
@@ -109,8 +108,7 @@ export const constantRoutes = [
     component: Layout,
     meta: {
       title: 'errorPages',
-      icon: 'mdi-alert-decagram-outline',
-      'icon-alt': 'mdi-alert-decagram-outline'
+      icon: 'mdi-alert-decagram-outline'
     },
     alwaysShow: true,
     children: [
@@ -193,8 +191,7 @@ export const asyncRoutes = [
     redirect: '/route/table',
     meta: {
       title: 'routes',
-      icon: 'mdi-chevron-up',
-      'icon-alt': 'mdi-chevron-down'
+      icon: 'mdi-router-network'
     },
     children: [
       {
@@ -217,8 +214,7 @@ export const asyncRoutes = [
     redirect: '/permission/page',
     meta: {
       title: 'permission',
-      icon: 'mdi-chevron-up',
-      'icon-alt': 'mdi-chevron-down'
+      icon: 'mdi-security'
     },
     alwaysShow: true,
     children: [

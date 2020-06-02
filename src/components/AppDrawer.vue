@@ -34,7 +34,7 @@
             :key="item.path"
             v-model="item.model"
             :prepend-icon="getIcon(item)"
-            append-icon=""
+            no-action
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -51,7 +51,7 @@
               :key="i"
               link
               :to="item.path ? 
-              ('/' === item.path ? '' : item.path)+'/' + child.path : 
+              ('/' === item.path ? '' : item.path) + '/' + child.path : 
               child.path"
             >
               <v-list-item-action v-if="child.meta && child.meta.icon">
@@ -115,7 +115,7 @@
         if (typeof item !== 'object' || typeof item.meta !== 'object') {
           return ''
         }
-        const icon = item.model ? item.meta.icon : item.meta['icon-alt'];
+        const icon = item.meta.icon
         return icon || ''
       }
     }
