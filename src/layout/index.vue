@@ -4,17 +4,15 @@
     <app-toolbar class="app--toolbar" />
     
     <v-content>
+      <app-tab v-if="tagsView && ! isMobile" />
       <v-container
-        class="fill-height"
+        class="fill-height_xxx"
         fluid
-        top
       >
         <v-row
           align="center"
-          justify="center"
         >
           <v-col>
-            <app-tab v-if="tagsView && ! isMobile" />
             <keep-alive :include="cachedViews">
               <router-view :key="key" />
             </keep-alive>

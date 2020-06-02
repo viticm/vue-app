@@ -28,7 +28,7 @@ export default {
   cancel: '取消',
   actions: '操作',
   translations: '语言',
-  profile: '简介',
+  profile: '个人中心',
   settings: '设置',
   confirm: '确认',
   warning: '警告',
@@ -44,4 +44,9 @@ export default {
   close: '关闭',
   closeAll: '关闭所有',
   closeOthers: '关闭其他',
+  email: '邮件',
+  update: '更新',
+  activity: '活动',
+  timeline: '时间线',
+  account: '账号',
 }

@@ -156,6 +156,27 @@ export const constantRoutes = [
         }
       }
     ]
+  },
+  {
+    id: 23,
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    meta: {},
+    hidden: true,
+    children: [
+      {
+        id: 24,
+        name: 'Profile',
+        path: 'index',
+        component: () => import('@/views/profile/index'),
+        meta: {
+          title: 'profile',
+          noCache: true,
+          icon: 'mdi-account-cog'
+        }
+      }
+    ]
   }
 ]
 

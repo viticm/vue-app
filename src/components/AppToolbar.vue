@@ -56,82 +56,82 @@
   </v-app-bar>
 </template>
 <script>
-  import NotificationList from '@/components/widgets/list/NotificationList'
-  import { toggleFullScreen, isMobile } from '@/utils/util'
-  import LocalesMenu from '@/components/widgets/LocalesMenu'
-  import ErrorLog from '@/components/error-log'
+import NotificationList from '@/components/widgets/list/NotificationList'
+import { toggleFullScreen, isMobile } from '@/utils/util'
+import LocalesMenu from '@/components/widgets/LocalesMenu'
+import ErrorLog from '@/components/error-log'
 
-  export default {
-    name: 'app-toolbar',
-    components: {
-      ErrorLog,
-      NotificationList,
-      LocalesMenu
+export default {
+  name: 'app-toolbar',
+  components: {
+    ErrorLog,
+    NotificationList,
+    LocalesMenu
+  },
+  computed: {
+    toolbarColor () {
+      return this.$vuetify.options.extra.mainNav
     },
-    computed: {
-      toolbarColor () {
-        return this.$vuetify.options.extra.mainNav
+    drawer: {
+      get () {
+        return this.$store.getters.drawer
       },
-      drawer: {
-        get () {
-          return this.$store.getters.drawer
-        },
-        set (val) {
-          this.$store.dispatch('app/toggleDrawer', val)                                
-        }
-      },
-      isMobile () {
-        return isMobile()
-      },
-      items () {
-        return [
-          {
-            icon: 'mdi-account-circle',
-            href: '#',
-            title: this.$t('common.profile'),
-            click: (e) => {
-              console.log(e)
-            }
-          },
-          {
-            icon: 'mdi-image-filter-vintage',
-            href: '#',
-            title: this.$t('common.settings'),
-            click: (e) => {
-              console.log(e)
-            }
-          },
-          {
-            icon: 'mdi-fullscreen-exit',
-            href: '#',
-            title: this.$t('signin.signout'),
-            click: this.handleLogout
-          }
-        ]
+      set (val) {
+        this.$store.dispatch('app/toggleDrawer', val)                                
       }
     },
-    methods: {
-      handleFullScreen () {
-        toggleFullScreen()
-      },
-      async handleLogout () {
-        const r = await this.$dialog.confirm({
-          text: this.$t('signin.signoutComfirm'),
-          title: this.$t('common.warning'),
-          actions: {
-            false: this.$t('common.cancel'),
-            true: {
-              color: 'red',
-              text: this.$t('signin.signout'),
-              persistent: false
-            }
+    isMobile () {
+      return isMobile()
+    },
+    items () {
+      return [
+        {
+          icon: 'mdi-account-circle',
+          href: '#',
+          title: this.$t('common.profile'),
+          click: () => {
+            this.$router.push('/profile')
           }
-        })
-        if (true === r) {
-          await this.$store.dispatch('user/logout')
-          this.$router.push(`/signin?redirect=${this.$route.fullPath}`)
+        },
+        {
+          icon: 'mdi-image-filter-vintage',
+          href: '#',
+          title: this.$t('common.settings'),
+          click: () => {
+            this.$router.push('/settings')
+          }
+        },
+        {
+          icon: 'mdi-fullscreen-exit',
+          href: '#',
+          title: this.$t('signin.signout'),
+          click: this.handleLogout
         }
+      ]
+    }
+  },
+  methods: {
+    handleFullScreen () {
+      toggleFullScreen()
+    },
+    async handleLogout () {
+      const r = await this.$dialog.confirm({
+        text: this.$t('signin.signoutComfirm'),
+        title: this.$t('common.warning'),
+        actions: {
+          false: this.$t('common.cancel'),
+          true: {
+            color: 'red',
+            text: this.$t('signin.signout'),
+            persistent: false
+          }
+        }
+      })
+      if (true === r) {
+        await this.$store.dispatch('user/logout')
+        this.$router.push(`/signin?redirect=${this.$route.fullPath}`)
       }
     }
   }
+}
 </script>

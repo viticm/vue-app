@@ -28,4 +28,5 @@ export default {
   page404: '404',
   errorPages: '错误页',
   errorLog: '错误日志',
+  profile: '个人中心',
 }

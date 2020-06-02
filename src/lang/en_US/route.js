@@ -27,4 +27,5 @@ export default {
   page404: '404',
   errorPages: 'Error pages',
   errorLog: 'Error log',
+  profile: 'Profile',
 }

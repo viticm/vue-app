@@ -44,4 +44,9 @@ export default {
   close: 'Close',
   closeAll: 'Close all',
   closeOthers: 'Close others',
+  email: 'Email',
+  update: 'Update',
+  activity: 'Activity',
+  timeline: 'Timeline',
+  account: 'Account',
 }
