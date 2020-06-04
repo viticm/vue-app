@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import SettingOptions from './setting-options/TheIndex.vue';
+import SettingOptions from './setting-options/TheIndex.vue'
 
 export default {
   name: 'AppRightSettings',
@@ -43,7 +43,7 @@ export default {
       this.rightDrawer = true;
     },
     changeTemporary(val) {
-      this.$refs.settingOptions.changeTemporary(val);
+      this.$refs.settingOptions.changeTemporary(val)
     },
   },
 }

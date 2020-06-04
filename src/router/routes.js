@@ -246,5 +246,57 @@ export const asyncRoutes = [
         }
       }
     ]
+  },
+  {
+    id: 25,
+    name: 'Nested',
+    path: '/nested',
+    component: Layout,
+    redirect: '/nested/menu1/menu1-1',
+    meta: {
+      title: 'nested',
+      icon: 'mdi-view-list'
+    },
+    children: [
+      {
+        id: 26,
+        name: 'Menu1',
+        path: 'menu1',
+        component: () => import('@/views/nested/menu1/index'),
+        redirect: '/nested/menu1/menu1-1',
+        meta: {
+          title: 'menu1'
+        },
+        children: [
+          {
+            id: 29,
+            name: 'Menu1-1',
+            path: 'menu1-1',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            meta: {
+              title: 'menu1-1'
+            }
+          },
+          {
+            id: 27,
+            name: 'Menu1-2',
+            path: 'menu1-2',
+            component: () => import('@/views/nested/menu1/menu1-2'),
+            meta: {
+              title: 'menu1-2'
+            }
+          }
+        ]
+      },
+      {
+        id: 28,
+        name: 'Menu2',
+        path: 'menu2',
+        component: () => import('@/views/nested/menu2/index'),
+        meta: {
+          title: 'menu2'
+        }
+      }
+    ]
   }
 ]

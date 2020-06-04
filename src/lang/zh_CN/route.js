@@ -29,4 +29,13 @@ export default {
   errorPages: '错误页',
   errorLog: '错误日志',
   profile: '个人中心',
+  nested: '路由嵌套',
+  menu1: '菜单1',
+  'menu1-1': '菜单 1-1',
+  'menu1-2': '菜单 1-2',
+  'menu1-2-1': '菜单 1-2-1',
+  'menu1-2-2': '菜单 1-2-2',
+  'menu1-3': '菜单 1-3',
+  menu2: '菜单 2',
+
 }
