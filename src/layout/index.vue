@@ -4,6 +4,7 @@
     <app-toolbar class="app--toolbar" />
     
     <v-content>
+      <breadcrumb v-if="! isMobile" />
       <app-tab v-if="tagsView && ! isMobile" />
       <v-container
         class="fill-height_xxx"
@@ -38,12 +39,15 @@ import AppToolbar from '@/components/AppToolbar'
 import { isMobile } from '@/utils/util'
 import AppRightSettings from '@/components/AppRightSettings'
 import AppTab from '@/components/AppTab'
+import Breadcrumb from '@/components/Breadcrumb'
+
 export default {
   components: {
     AppDrawer,
     AppToolbar,
     AppRightSettings,
-    AppTab
+    AppTab,
+    Breadcrumb
   },
 
   props: {

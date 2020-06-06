@@ -81,7 +81,7 @@ export const constantRoutes = [
     ]
   },
   {
-    id: 16,
+    id: 17,
     name: 'icons',
     path: '/icons',
     component: Layout,
@@ -91,7 +91,7 @@ export const constantRoutes = [
     alwaysShow: true,
     children: [
       {
-        id: 17,
+        id: 16,
         name: 'IconShow',
         path: 'index',
         component: () => import('@/views/icons'),
@@ -106,6 +106,7 @@ export const constantRoutes = [
     name: 'ErrorPages',
     path: '/error',
     component: Layout,
+    redirect: 'noRedirect',
     meta: {
       title: 'errorPages',
       icon: 'mdi-alert-decagram-outline'
@@ -135,7 +136,7 @@ export const constantRoutes = [
     ]
   },
   {
-    id: 21,
+    id: 22,
     path: '/error-log',
     component: Layout,
     meta: {
@@ -146,7 +147,7 @@ export const constantRoutes = [
     alwaysShow: true,
     children: [
       {
-        id: 22,
+        id: 21,
         path: 'index',
         component: () => import('@/views/error-log/index'),
         meta: {
@@ -156,15 +157,15 @@ export const constantRoutes = [
     ]
   },
   {
-    id: 23,
+    id: 24,
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',
-    meta: {},
+    meta: [],
     hidden: true,
     children: [
       {
-        id: 24,
+        id: 23,
         name: 'Profile',
         path: 'index',
         component: () => import('@/views/profile/index'),
@@ -248,7 +249,7 @@ export const asyncRoutes = [
     ]
   },
   {
-    id: 25,
+    id: 29,
     name: 'Nested',
     path: '/nested',
     component: Layout,
@@ -259,7 +260,7 @@ export const asyncRoutes = [
     },
     children: [
       {
-        id: 26,
+        id: 27,
         name: 'Menu1',
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'),
@@ -269,7 +270,7 @@ export const asyncRoutes = [
         },
         children: [
           {
-            id: 29,
+            id: 25,
             name: 'Menu1-1',
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
@@ -278,7 +279,7 @@ export const asyncRoutes = [
             }
           },
           {
-            id: 27,
+            id: 26,
             name: 'Menu1-2',
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
