@@ -7,6 +7,8 @@
  - @user viticm( viticm.ti@gmail.com )
  - @date 2020/06/05 14:55
  - @uses the route link breadcrumbs component.
+         目前面包屑导航由于组件的限制，无法完美的解决过度动画的问题
+         （transition）
 -->
 <template>
   <v-breadcrumbs :items="levelList">

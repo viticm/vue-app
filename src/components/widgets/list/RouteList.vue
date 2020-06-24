@@ -74,7 +74,7 @@ export default {
     }
   },
   methods: {
-    resolvePath(routePath, child) {
+    resolvePath (routePath, child) {
       if (isExternal(routePath)) {
         return routePath
       }

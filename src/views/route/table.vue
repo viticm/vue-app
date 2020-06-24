@@ -87,6 +87,7 @@
                           item-value="id"
                           multiple
                         >
+                          <!-- cn: 这里也可以用v-combobox来实现 -->
                           <template v-slot:selection="data">
                             <v-chip
                               v-bind="data.attrs"

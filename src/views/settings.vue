@@ -27,21 +27,21 @@
           v-model="valid"
           :lazy-validation="lazy"
           >
-       <v-text-field
-          v-model="form.name"
-          :rules="nameRules"
-          :disabled="!isEditing"
-          color="white"
-          label="Name"
-        />
+          <v-text-field
+            v-model="form.name"
+            :rules="nameRules"
+            :disabled="!isEditing"
+            color="white"
+            label="Name"
+          />
 
-        <v-text-field
-          v-model="form.api"
-          :rules="uriRules"
-          :disabled="!isEditing"
-          color="white"
-          label="API"
-        />
+          <v-text-field
+            v-model="form.api"
+            :rules="uriRules"
+            :disabled="!isEditing"
+            color="white"
+            label="API"
+          />
         </v-form>
       </v-card-text>
       <v-divider></v-divider>

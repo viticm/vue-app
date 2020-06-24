@@ -19,6 +19,7 @@ export default {
   routeTable: 'Route table',
   settings: 'Settings',
   index: 'Index',
+  permission: 'Permission',
   pagePermission: 'Page permission',
   rolePermission: 'Role permission',
   directivePermission: 'Directive',
@@ -36,4 +37,7 @@ export default {
   'menu1-2-2': 'Menu 1-2-2',
   'menu1-3': 'Menu 1-3',
   menu2: 'Menu 2',
+  table: 'Table',
+  dynamicTable: 'Dynamic Table',
+  complexTable: 'Complex Table',
 }

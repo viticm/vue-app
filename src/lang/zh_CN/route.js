@@ -37,5 +37,7 @@ export default {
   'menu1-2-2': '菜单 1-2-2',
   'menu1-3': '菜单 1-3',
   menu2: '菜单 2',
-
+  table: 'Table',
+  dynamicTable: '动态 Table',
+  complexTable: '综合 Table',
 }

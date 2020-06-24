@@ -176,6 +176,37 @@ export const constantRoutes = [
         }
       }
     ]
+  },
+  {
+    id: 30,
+    name: 'Table',
+    path: '/table',
+    component: Layout,
+    redirect: '/table/complex-table',
+    meta: {
+      title: 'table',
+      icon: 'mdi-table'
+    },
+    children: [
+      {
+        id: 31,
+        name: 'DynamicTable',
+        path: 'dynamic-table',
+        component: () => import('@/views/table/dynamic-table/index'),
+        meta: {
+          title: 'dynamicTable'
+        }
+      },
+      {
+        id: 32,
+        name: 'ComplexTable',
+        path: 'complex-table',
+        component: () => import('@/views/table/complex-table'),
+        meta: {
+          title: 'complexTable'
+        }
+      }
+    ]
   }
 ]
 
