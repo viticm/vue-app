@@ -29,6 +29,7 @@ export default {
   errorPages: 'Error pages',
   errorLog: 'Error log',
   profile: 'Profile',
+  example: 'Example',
   nested: 'Nested Routes',
   menu1: 'Menu 1',
   'menu1-1': 'Menu 1-1',
@@ -40,4 +41,7 @@ export default {
   table: 'Table',
   dynamicTable: 'Dynamic Table',
   complexTable: 'Complex Table',
+  createArticle: 'Create Article',
+  editArticle: 'Edit Article',
+  articleList: 'Article List',
 }

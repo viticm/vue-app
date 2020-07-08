@@ -49,4 +49,10 @@ export default {
   activity: 'Activity',
   timeline: 'Timeline',
   account: 'Account',
+  comment: 'Comment',
+  open: 'Open',
+  platform: 'Platform',
+  other: 'Other',
+  publish: 'Publish',
+  draft: 'Draft',
 }

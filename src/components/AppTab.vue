@@ -20,7 +20,7 @@
         :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
         @contextmenu.prevent.native="openMenu(tag, $event)"
       >
-        {{ generateTitle(tag.title) }}
+        {{ generateTitle(tag.title) + (tag.id ? '-' + tag.id : '') }}
       </v-tab>
       <v-btn @click="closeSelectedTag(tag)" small
         icon :key="'close' + tag.path" v-if="! isAffix(tag)">
@@ -130,7 +130,7 @@ export default {
       this.$nextTick(() => {
         for (const tag of tags) {
           if (tag.to.path === this.$route.path) {
-            this.$refs.scrollPane.moveToTarget(tag)
+            // this.$refs.scrollPane.moveToTarget(tag)
             // when query is different then update
             if (tag.to.fullPath !== this.$route.fullPath) {
               this.$store.dispatch('tagsView/updateVisitedView', this.$route)

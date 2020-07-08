@@ -20,7 +20,7 @@
     </template>
     <template v-for="(child, i) in item.children">
       <route-link 
-        v-if="! child.children" 
+        v-if="! child.children && ! child.hidden" 
         :key="i" 
         :item="child"
         :to="resolvePath(child.path)" />
@@ -35,7 +35,7 @@
       -->
 
       <!-- Use recursion -->
-      <route-list v-else-if="! sub" 
+      <route-list v-else-if="! sub && ! child.hidden" 
         :key="child.path" 
         :item="child" 
         :base-path="resolvePath(child.path)"

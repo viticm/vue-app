@@ -49,4 +49,10 @@ export default {
   activity: '活动',
   timeline: '时间线',
   account: '账号',
+  comment: '评论',
+  open: '开启',
+  platform: '平台',
+  other: '其他',
+  publish: '发布',
+  draft: '草稿',
 }

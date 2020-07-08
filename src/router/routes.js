@@ -207,6 +207,52 @@ export const constantRoutes = [
         }
       }
     ]
+  },
+  {
+    id: 33,
+    name: 'Example',
+    path: '/example',
+    component: Layout,
+    redirect: '/example/list',
+    meta: {
+      title: 'example',
+      icon: 'mdi-orbit'
+    },
+    alwaysShow: true,
+    children: [
+      {
+        id: 36,
+        name: 'ArticleList',
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        meta: {
+          title: 'articleList',
+          icon: 'mdi-playlist-edit'
+        }
+      },
+      {
+        id: 34,
+        name: 'CreateArticle',
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        meta: {
+          icon: 'mdi-pencil-box',
+          title: 'createArticle'
+        }
+      },
+      {
+        id: 35,
+        name: 'EditArticle',
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/example/edit'),
+        meta: {
+          title: 'editArticle',
+          noCache: true,
+          activeMenu: '/example/list'
+        },
+        hidden: true
+      }
+    ]
   }
 ]
 

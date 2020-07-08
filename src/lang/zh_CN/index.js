@@ -13,6 +13,7 @@ import common from './common'
 import setting from './setting'
 import errorLog from './error-log'
 import table from './table'
+import example from './example'
 
 export default {
   route: route,
@@ -29,5 +30,6 @@ export default {
   errorLog: errorLog,
   common: common,
   setting: setting,
-  table: table
+  table: table,
+  example: example
 }

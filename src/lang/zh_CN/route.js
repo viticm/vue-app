@@ -29,6 +29,7 @@ export default {
   errorPages: '错误页',
   errorLog: '错误日志',
   profile: '个人中心',
+  example: '综合实例',
   nested: '路由嵌套',
   menu1: '菜单1',
   'menu1-1': '菜单 1-1',
@@ -40,4 +41,7 @@ export default {
   table: 'Table',
   dynamicTable: '动态 Table',
   complexTable: '综合 Table',
+  createArticle: '创建文章',
+  editArticle: '编辑文章',
+  articleList: '文章列表',
 }
