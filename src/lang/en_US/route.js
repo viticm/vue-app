@@ -44,4 +44,11 @@ export default {
   createArticle: 'Create Article',
   editArticle: 'Edit Article',
   articleList: 'Article List',
+  game: 'Game',
+  serverList: 'Server List',
+  serverCreate: 'Server Create',
+  serverEdit: 'Server Edit',
+  serverOptList: 'Server Option List',
+  serverOptCreate: 'Server Option Create',
+  serverOptEdit: 'Server Option Edit',
 }

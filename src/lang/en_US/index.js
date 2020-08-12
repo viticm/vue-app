@@ -15,6 +15,7 @@ import setting from './setting'
 import errorLog from './error-log'
 import table from './table'
 import example from './example'
+import game from './game'
 
 export default {
   route: route,
@@ -32,5 +33,6 @@ export default {
   common: common,
   setting: setting,
   table: table,
-  example: example
+  example: example,
+  game: game
 }

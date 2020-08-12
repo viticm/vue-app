@@ -23,6 +23,7 @@ export default {
   constant: 'constant',
   routeTable: 'route table',
   new: 'new',
+  remove: 'Remove',
   edit: 'edit',
   save: 'save',
   cancel: 'Cancel',

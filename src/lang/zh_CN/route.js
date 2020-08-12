@@ -44,4 +44,11 @@ export default {
   createArticle: '创建文章',
   editArticle: '编辑文章',
   articleList: '文章列表',
+  game: '游戏',
+  serverList: '服务器列表',
+  serverCreate: '服务器创建',
+  serverEdit: '服务器编辑',
+  serverOptList: '服务器配置列表',
+  serverOptCreate: '服务器配置创建',
+  serverOptEdit: '服务器配置编辑',
 }

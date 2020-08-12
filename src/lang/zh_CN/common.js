@@ -23,6 +23,7 @@ export default {
   constant: '固定',
   routeTable: '路由表',
   new: '新增',
+  remove: '移除',
   edit: '编辑',
   save: '保存',
   cancel: '取消',
