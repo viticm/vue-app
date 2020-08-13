@@ -136,11 +136,23 @@
               label="Host"
               :rules="PCLRules"/>
           </v-col>
-           <v-col cols="12">
+          <v-col cols="12">
              <v-text-field
               v-model="item.pcl.chat_host"
               label="Chat host"
               :rules="PCLRules"/>
+          </v-col>
+          <v-col cols="12">
+             <v-text-field
+              v-model="item.pcl.game_id"
+              label="Game ID"
+              :rules="GameIDRules"/>
+          </v-col>
+          <v-col cols="12">
+             <v-text-field
+              v-model="item.pcl.game_key"
+              label="Game key"
+              :rules="GameKeyRules"/>
           </v-col>
         </template>
         <v-col cols="12">
@@ -184,11 +196,11 @@ const defaultDBOpt = {
   count: 5,
 }
 
-const pclHost = 'https://leafly.goho.co/lumen-api/'
-const pclChatHost = 'https://leafly.goho.co/lumen-api/'
 const defaultPcl = {
-  host: pclHost,
-  chat_host: pclChatHost
+  host: 'https://leafly.goho.co/lumen-api/game/',
+  chat_host: 'https://leafly.goho.co/lumen-api/game/',
+  game_id: 1,
+  game_key: 'O6YuI4eS@l!N9WUs'
 }
 
 const defaultItem = {
@@ -261,6 +273,14 @@ export default {
         v => !!v || 'Pcl is required',
         v => validURL(v) || 'Invalid url'
       ],
+      GameIDRules: [
+        v => !!v || 'Game ID is required',
+        v => /^[0-9]+$/.test(v) || 'Game ID must be a number',
+        v => v > 0 && v <= 999 || 'Game ID between 0 and 999',
+      ],
+      GameKeyRules: [
+        v => !!v || 'Game key is required'
+      ],
       serverTypes: ['login', 'world', 'global', 'cross'],
       serverIDLoading: false,
       dbOpen: false,
@@ -306,6 +326,7 @@ export default {
         if (! this.pclOpen) {
           delete one['pcl']
         } else {
+          one.pcl.game_id = Number(one.pcl.game_id)
           one.pcl = JSON.stringify(one.pcl)
         }
         console.log('save data', one.db)
