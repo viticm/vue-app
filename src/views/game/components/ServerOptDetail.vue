@@ -23,6 +23,7 @@
         <v-col cols="12">
           <v-select
             v-model="item.type"
+            @change="typeChange"
             :label="$t('game.serverType')"
             :items="serverTypes"
             dense
@@ -44,6 +45,7 @@
         <v-col cols="12">
            <v-text-field
             v-model="item.net_ip"
+            @change="netIPChange"
             :label="$t('game.netIP')"
             :rules="netIPRules"/>
         </v-col>
@@ -131,28 +133,41 @@
         </v-col>
         <template v-if="pclOpen">
           <v-col cols="12">
-             <v-text-field
-              v-model="item.pcl.host"
-              label="Host"
-              :rules="PCLRules"/>
+            <v-card>
+              <v-text-field
+                v-model="item.pcl.host"
+                label="Host"
+                :rules="PCLRules"/>
+              <v-text-field
+                v-model="item.pcl.chat_host"
+                label="Chat host"
+                :rules="PCLRules"/>
+              <v-text-field
+                v-model="item.pcl.game_id"
+                label="Game ID"
+                :rules="GameIDRules"/>
+              <v-text-field
+                v-model="item.pcl.game_key"
+                label="Game key"
+                :rules="GameKeyRules"/>
+            </v-card>
           </v-col>
+        </template>
+        <v-col cols="12">
+          <v-switch v-model="clusterOpen" label="Cluster:" />
+        </v-col>
+        <template v-if="clusterOpen">
           <v-col cols="12">
-             <v-text-field
-              v-model="item.pcl.chat_host"
-              label="Chat host"
-              :rules="PCLRules"/>
-          </v-col>
-          <v-col cols="12">
-             <v-text-field
-              v-model="item.pcl.game_id"
-              label="Game ID"
-              :rules="GameIDRules"/>
-          </v-col>
-          <v-col cols="12">
-             <v-text-field
-              v-model="item.pcl.game_key"
-              label="Game key"
-              :rules="GameKeyRules"/>
+            <v-card>
+              <v-text-field
+                v-model="item.cluster.name"
+                label="Name"
+                :rules="ClusterNameRules"/>
+              <v-text-field
+                v-model="item.cluster.addr"
+                label="Address"
+                :rules="ClusterAddrRules"/>
+            </v-card>
           </v-col>
         </template>
         <v-col cols="12">
@@ -213,7 +228,15 @@ const defaultItem = {
   net_ip: '0.0.0.0',
   auth_count: 8,
   db: [ defaultDBOpt ],
-  pcl: defaultPcl
+  pcl: defaultPcl,
+  cluster: {}
+}
+
+const defaultClusterPort = {
+  login: 10000,
+  world: 20000,
+  global: 30000,
+  cross: 40000
 }
 
 export default {
@@ -281,11 +304,18 @@ export default {
       GameKeyRules: [
         v => !!v || 'Game key is required'
       ],
+      ClusterNameRules: [
+        v => !!v || 'Cluster name is required',
+      ],
+      ClusterAddrRules: [
+        v => !!v || 'Cluster address is required',
+      ],
       serverTypes: ['login', 'world', 'global', 'cross'],
       serverIDLoading: false,
       dbOpen: false,
       dbOpts: ['DB_GAME', 'DB_LOGIN', 'DB_LOG', 'DB_GLOBAL', 'DB_CROSS'],
       pclOpen: false,
+      clusterOpen: false,
     }
   },
   props: {
@@ -305,6 +335,20 @@ export default {
         }
         **/
       ]
+    }
+  },
+  watch: {
+    clusterOpen (val) {
+      if (val) {
+        const id = this.item.server_id
+        const type = this.item.type
+        this.item.cluster = this.item.cluster ?? {}
+        const name = this.item.cluster.name
+        const addr = this.item.cluster.addr
+        this.item.cluster.name = name ?? type + '_' + id
+        this.item.cluster.addr = 
+          addr ?? this.item.net_ip + ':' + (defaultClusterPort[type] + id)
+      }
     }
   },
   methods: {
@@ -328,6 +372,11 @@ export default {
         } else {
           one.pcl.game_id = Number(one.pcl.game_id)
           one.pcl = JSON.stringify(one.pcl)
+        }
+        if (! this.clusterOpen) {
+          delete one['cluster']
+        } else {
+          one.cluster = JSON.stringify(one.cluster)
         }
         console.log('save data', one.db)
         const r = await saveServerOpt(one)
@@ -373,6 +422,12 @@ export default {
           this.pclOpen = true
         }
 
+        if (this.item.cluster) {
+          this.item.cluster = JSON.parse(this.item.cluster)
+          console.log(this.item.cluster)
+          this.clusterOpen = true
+        }
+
       })
     },
 
@@ -383,6 +438,31 @@ export default {
     addDB () {
       const one = Object.assign({}, defaultDBOpt)
       this.item.db.push(one)
+    },
+
+    genClusterAddr () {
+     if (this.item.cluster) {
+        const id = this.item.server_id
+        const ip = this.item.net_ip
+        const type = this.item.type
+        const addr = ip + ':' + (defaultClusterPort[type] + id) 
+        this.item.cluster.addr = addr
+      }
+    },
+    genClusterName () {
+     if (this.item.cluster) {
+        const id = this.item.server_id
+        const type = this.item.type
+        this.item.cluster.name = type + '_' + id
+      }
+    },
+
+    netIPChange () {
+      this.genClusterAddr()
+    },
+
+    typeChange () {
+      this.genClusterName()
     }
 
   },

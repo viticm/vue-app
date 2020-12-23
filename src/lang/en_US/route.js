@@ -51,4 +51,5 @@ export default {
   serverOptList: 'Server Option List',
   serverOptCreate: 'Server Option Create',
   serverOptEdit: 'Server Option Edit',
+  someone: 'request',
 }

@@ -56,4 +56,12 @@ export default {
   other: 'Other',
   publish: 'Publish',
   draft: 'Draft',
+  age: 'Age',
+  height: 'Height',
+  weight: 'Weight',
+  sex: 'Sex',
+  tel: 'Telephone',
+  male: 'Male',
+  female: 'Female',
+  submit: 'Submit',
 }

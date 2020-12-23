@@ -51,4 +51,5 @@ export default {
   serverOptList: '服务器配置列表',
   serverOptCreate: '服务器配置创建',
   serverOptEdit: '服务器配置编辑',
+  someone: '上墙申请',
 }

@@ -56,4 +56,12 @@ export default {
   other: '其他',
   publish: '发布',
   draft: '草稿',
+  age: '年龄',
+  height: '身高',
+  weight: '体重',
+  sex: '性别',
+  tel: '电话',
+  male: '男',
+  female: '女',
+  submit: '提交',
 }

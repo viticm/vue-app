@@ -7,7 +7,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/signin', '/auth-redirect'] // no redirect whitelist
+const whiteList = ['/signin', '/auth-redirect', '/someone'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -60,6 +60,7 @@ router.beforeEach(async(to, from, next) => {
   } else {
     /* has no token*/
 
+    console.log(to.path)
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()
