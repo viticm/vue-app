@@ -24,7 +24,7 @@
         <div align="right">
           <locales-menu />
         </div>
-        <v-content>
+        <v-main>
           <v-container
             fluid
             fill-height
@@ -94,7 +94,7 @@
               </v-flex>
             </v-layout>
           </v-container>
-        </v-content>
+        </v-main>
 
         <!--
         <v-footer

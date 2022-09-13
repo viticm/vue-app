@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
-    <app-drawer class="app--drawer" />
-    <app-toolbar class="app--toolbar" />
+    <app-drawer class="app--drawer" style="z-index:20" />
+    <app-toolbar class="app--toolbar" style="z-index:9" />
     
     <v-content>
       <breadcrumb v-if="! isMobile" />
